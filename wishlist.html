@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Meta SEO -->
+  <meta name="description" content="E-commerce website for medicines and products" />
+  <meta name="keywords" content="pharmacy, medicines, ecommerce, health" />
+  <meta name="author" content="Kiroloes Reda" />
+  <link rel="icon" href="./img/f1.ico">
+  <title>products page</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <style>
+
+  </style>
+</head>
+
+<body class="bg-slate-50">
+
+<header class="py-8 bg-[var(--light)] border-b-2 border-[var(--dark)] rounded-b-sm sticky top-0 z-50 shadow-md ">
+  <div class="flex justify-around items-center">
+
+    <!-- Logo -->
+    <a href="./index.html" class="text-[var(--dark)] font-bold text-xl">
+      fashonShoping
+    </a>
+
+    <!-- Navigation for meduim device or more -->
+    <nav class="flex items-center">
+      <ul class="hidden md:flex [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
+        <li ><a  href="./index.html">Home</a></li>
+        <li><a  href="#about">About</a></li>
+        <li><a href="./trackOrder.html">Track Order</a></li>
+        <li><a class="text-[var(--orange)]" href="#">Wishlist</a></li>
+        <li><a href="./blog.html">Blog</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+                <li><a href="./products.html"><i class="cursor-pointer fa-solid fa-magnifying-glass"></i></a></li>
+        <li class=""><i class=" fa-solid fa-user cursor-pointer text-[var(--dark)]"></i></li>           
+        <li class="relative list-none">
+                       <a href="./cart.html"><i class="fa-solid fa-cart-shopping cursor-pointer text-[var(--dark)] text-xl"></i></a>
+            <span id="cart-count" class="absolute -top-2 -right-1 xl:right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">0</span></li>
+
+      </ul>
+    </nav>
+
+    <!-- manual menu -->
+ <div id="menu-btn" class="menuBar md:hidden">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+ </div>
+
+  </div>
+</header>
+
+<!-- userSectionContainer -->
+<div id="userSectionContainer">
+
+  <!-- userSection -->
+  <div id="userSection" 
+       class="hidden fixed translate-x-1/2 md:top-32 md:right-28 lg:right-40 xl:right-52 2xl:right-80 
+              bg-white rounded-2xl shadow-xl drop-shadow-lg p-8 flex flex-col items-center gap-6 
+              w-[90%] sm:w-[400px] animate-fadeIn z-50">
+
+    <button id="closeUserSection" 
+            class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center 
+                   rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-black transition">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="flex flex-col items-center gap-3 ">
+      <img id="userImage" src="./img/people/1.png" alt="User image" class="w-20 h-20 rounded-full shadow-md">
+      <p id="userName" class="text-center text-2xl font-bold text-gray-800"></p>
+      <p id="noUser" class="hidden text-gray-500 text-sm">Welcome! Please login or sign up to continue</p>
+    </div>
+
+    <div class="flex flex-col gap-4 w-full">
+      <div class="flex flex-row gap-4 justify-center">
+        <a href="./login.html" class="flex-1 py-2 px-4 rounded-xl text-lg font-semibold bg-orange-400 text-white hover:bg-orange-500 transition">
+          Login
+        </a>
+        <a href="./signUp.html" class="flex-1 py-2 px-4 rounded-xl text-lg font-semibold bg-gray-900 text-white hover:bg-gray-700 transition">
+          Sign Up
+        </a>
+      </div>
+      
+      <a id="viewProfile" href="./viewProfile.html" 
+         class="w-full text-center py-2 px-4 rounded-xl text-lg font-semibold bg-gray-500 text-white hover:bg-gray-600 transition">
+        View Profile
+      </a>
+      <div id="logout" onclick="logout()" 
+           class="w-full text-center py-2 px-4 rounded-xl text-lg font-semibold bg-red-500 text-white hover:bg-red-600 transition">
+        Logout
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- nav bar for small device -->
+<div id="mobile-menu" class="hidden md:hidden p-5 shadow-md z-30 fixed w-full top-20 bg-white">
+        <ul class="  flex flex-col gap-3 [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
+        <li ><a href="./index.html">Home</a></li>
+        <li><a class="text-[var(--orange)]" href="#">About</a></li>
+        <li><a href="./trackOrder.html">Track Order</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="./blog.html">Blog</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+        <div class="flex gap-3 px-2">
+                <li><a href="./products.html"><i class="cursor-pointer fa-solid fa-magnifying-glass"></i></a></li>
+        <li class=""><i class=" fa-solid fa-user cursor-pointer text-[var(--dark)]"></i></li>           
+        <li class="relative list-none">
+                       <a href="./cart.html"><i class="fa-solid fa-cart-shopping cursor-pointer text-[var(--dark)] text-xl"></i></a>
+            <span id="cart-count" class="absolute -top-2 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">0</span></li>
+       </div>
+      </ul>
+</div>
+
+<div class="my-12"></div>
+
+<!-- main  -->
+ <main  id="about" class="mb-44">
+
+ 
+<h1 class="w-full text-4xl font-extrabold mb-8 text-center text-gray-800">My Favorite Products</h1>
+
+<div class="min-w-full p-5 flex  items-center">
+  <table class="min-w-full bg-white rounded-xl  flex-col flex-grow-1 shadow-lg divide-y divide-gray-200">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="py-3 px-6 text-left text-gray-600 font-semibold tracking-wider">Product</th>
+        <th class="py-3 px-6 text-left text-gray-600 font-semibold tracking-wider">Price</th>
+        <th class="py-3 px-6 text-center text-gray-600 font-semibold tracking-wider">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="tbody" class="text-gray-700">
+
+
+    </tbody>
+  </table>
+ 
+</div>
+
+ </main>
+
+
+
+ <!-- Modern Footer -->
+<footer class="bg-gray-800 text-gray-400">
+  <div class="max-w-7xl mx-auto px-5 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- About -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">About Us</h3>
+      <p class="text-gray-400 text-sm">
+        We provide top-notch services and aim for customer satisfaction. 
+        Your feedback helps us improve every day.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="#home" class="hover:text-orange-400 transition">Home</a></li>
+        <li><a href="#" class="hover:text-orange-400 transition">About</a></li>
+        <li><a href="#service" class="hover:text-orange-400 transition">Services</a></li>
+        <li><a href="#" class="hover:text-orange-400 transition">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">Follow Us</h3>
+        <div class="flex gap-4 text-2xl">
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+    </div>
+
+  </div>
+
+  <div class="border-t border-gray-800 mt-6 text-center py-4 text-sm text-gray-500">
+    &copy; 2025 fashonShoping. All rights reserved.
+  </div>
+</footer>
+  <div id="userSectionContainer"></div>
+
+  <script src="./main.js"></script>
+<script>
+      let favArray=[]
+    if(localStorage.getItem("token") && currentUser){
+     favArray=currentUser.wishList ||[]
+  }
+  else{
+   favArray=JSON.parse(localStorage.getItem("favArray"))||[]
+  }
+    
+  const container= document.getElementById("tbody");
+
+function readfavProducts(){
+ container.innerHTML=""
+      favArray.forEach(e => {
+      container.innerHTML+=`  
+      <tr class="border-b hover:bg-gray-50 transition duration-300">
+        <td class="py-4 px-2 flex items-center gap-3">
+          <img src=${e.image || e.images[0]} alt="${e.title}" class="w-12 h-12 rounded-lg object-cover">
+          <span class="font-medium text-gray-800">${e.title}</span>
+        </td>
+        <td class="py-4  px-3 font-semibold text-gray-700">$${e.price}</td>
+        <td class="py-4  px-3 flex justify-center items-center gap-4 mb-3">
+          <!-- Cart Icon -->
+          <i  onclick="addToCart(${e.id})"  class="fas fa-cart-plus text-blue-600 hover:text-blue-700 cursor-pointer text-2xl transition" title="Add to Cart"></i>
+          <!-- Heart Icon -->
+          <i  onclick="removeFromfav(${e.id})" class="fas fa-heart text-red-500 hover:text-red-600 cursor-pointer text-2xl transition" title="Remove from Favorites"></i>
+        </td>
+      </tr>`
+  });
+}
+
+
+  function removeFromfav(id){
+              favArray.forEach((e,i,arr)=>{
+           if(arr[i].id===id){
+             favArray.splice(i,1);
+             console.log(favArray)
+           }
+        })
+
+          if(localStorage.getItem("token") && currentUser){
+            localStorage.setItem("userArray",JSON.stringify(users));
+         }
+         else{
+            localStorage.setItem("favArray",JSON.stringify(favArray));
+         }
+       
+        readfavProducts();
+        
+  }
+readfavProducts();
+</script>
+
+
+  <!-- JavaScript for Horizontal Scroll -->
+
+</body>
+</html>

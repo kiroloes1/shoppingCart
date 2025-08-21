@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Meta SEO -->
+  <meta name="description" content="E-commerce website for medicines and products" />
+  <meta name="keywords" content="pharmacy, medicines, ecommerce, health" />
+  <meta name="author" content="Kiroloes Reda" />
+  <link rel="icon" href="./img/f1.ico">
+  <title>products page</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <style>
+
+  </style>
+</head>
+
+<body class="bg-slate-50">
+
+<header class="py-8 bg-[var(--light)] border-b-2 border-[var(--dark)] rounded-b-sm sticky top-0 z-50 shadow-md ">
+  <div class="flex justify-around items-center">
+
+    <!-- Logo -->
+    <a href="./index.html" class="text-[var(--dark)] font-bold text-xl">
+      fashonShoping
+    </a>
+
+    <!-- Navigation for meduim device or more -->
+    <nav class="flex items-center">
+      <ul class="hidden md:flex [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
+        <li ><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./trackOrder.html">Track Order</a></li>
+        <li><a href="./wishlist.html">Wishlist</a></li>
+        <li><a class="text-[var(--orange)]" href="#">Blog</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+                <li><a href="./products.html"><i class="cursor-pointer fa-solid fa-magnifying-glass"></i></a></li>
+        <li class=""><i class=" fa-solid fa-user cursor-pointer text-[var(--dark)]"></i></li>           
+        <li class="relative list-none">
+               <a href="./cart.html"><i class="fa-solid fa-cart-shopping cursor-pointer text-[var(--dark)] text-xl"></i></a>
+            <span id="cart-count" class="absolute -top-2 -right-1 xl:right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">0</span></li>
+
+      </ul>
+    </nav>
+
+    <!-- manual menu -->
+ <div id="menu-btn" class="menuBar md:hidden">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+ </div>
+
+  </div>
+</header>
+
+<!-- userSectionContainer -->
+<div id="userSectionContainer">
+
+  <!-- userSection -->
+  <div id="userSection" 
+       class="hidden fixed translate-x-1/2 md:top-32 md:right-28 lg:right-40 xl:right-52 2xl:right-80 
+              bg-white rounded-2xl shadow-xl drop-shadow-lg p-8 flex flex-col items-center gap-6 
+              w-[90%] sm:w-[400px] animate-fadeIn z-50">
+
+    <button id="closeUserSection" 
+            class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center 
+                   rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-black transition">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="flex flex-col items-center gap-3 ">
+      <img id="userImage" src="./img/people/1.png" alt="User image" class="w-20 h-20 rounded-full shadow-md">
+      <p id="userName" class="text-center text-2xl font-bold text-gray-800"></p>
+      <p id="noUser" class="hidden text-gray-500 text-sm">Welcome! Please login or sign up to continue</p>
+    </div>
+
+    <div class="flex flex-col gap-4 w-full">
+      <div class="flex flex-row gap-4 justify-center">
+        <a href="./login.html" class="flex-1 py-2 px-4 rounded-xl text-lg font-semibold bg-orange-400 text-white hover:bg-orange-500 transition">
+          Login
+        </a>
+        <a href="./signUp.html" class="flex-1 py-2 px-4 rounded-xl text-lg font-semibold bg-gray-900 text-white hover:bg-gray-700 transition">
+          Sign Up
+        </a>
+      </div>
+      
+      <a id="viewProfile" href="./viewProfile.html" 
+         class="w-full text-center py-2 px-4 rounded-xl text-lg font-semibold bg-gray-500 text-white hover:bg-gray-600 transition">
+        View Profile
+      </a>
+      <div id="logout" onclick="logout()" 
+           class="w-full text-center py-2 px-4 rounded-xl text-lg font-semibold bg-red-500 text-white hover:bg-red-600 transition">
+        Logout
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- nav bar for small device -->
+<div id="mobile-menu" class="hidden md:hidden p-5 shadow-md z-30 fixed w-full top-20 bg-white">
+        <ul class="  flex flex-col gap-3 [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
+        <li ><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./trackOrder.html">Track Order</a></li>
+        <li><a href="./wishlist.html">Wishlist</a></li>
+        <li><a class="text-[var(--orange)]" href="#">Blog</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+        <div class="flex gap-3 px-2">
+                <li><a href="./products.html"><i class="cursor-pointer fa-solid fa-magnifying-glass"></i></a></li>
+        <li class=""><i class=" fa-solid fa-user cursor-pointer text-[var(--dark)]"></i></li>           
+        <li class="relative list-none">
+                       <a href="./cart.html"><i class="fa-solid fa-cart-shopping cursor-pointer text-[var(--dark)] text-xl"></i></a>
+            <span id="cart-count" class="absolute -top-2 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">0</span></li>
+       </div>
+      </ul>
+</div>
+
+<div class="my-12"></div>
+
+<!-- main  -->
+ <main  id="home" class="mb-44">
+
+<!-- Blog Section -->
+<section id="blog" class="py-16 px-6 md:px-20 bg-white">
+  <h2 class="text-3xl font-bold text-center mb-12 text-blue-950">-- Latest Blog --</h2>
+
+  <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+    
+    <!-- Blog Card 1 -->
+    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
+      <img src="img/blog/b1.jpg" alt="Blog 1" class="w-full h-56 object-cover">
+      <div class="p-6 space-y-3">
+        <p class="text-sm text-gray-500 flex items-center gap-2">
+          <i class="fas fa-calendar-alt text-orange-400"></i> Feb 15, 2025
+        </p>
+        <h3 class="text-xl font-semibold text-blue-900">
+          New Winter Collection
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Explore our latest winter jackets designed for both comfort and style. Perfect for cold weather with premium quality fabrics.
+        </p>
+      </div>
+    </div>
+
+    <!-- Blog Card 2 -->
+    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
+      <img src="img/blog/b2.jpg" alt="Blog 2" class="w-full h-56 object-cover">
+      <div class="p-6 space-y-3">
+        <p class="text-sm text-gray-500 flex items-center gap-2">
+          <i class="fas fa-calendar-alt text-orange-400"></i> Jan 30, 2025
+        </p>
+        <h3 class="text-xl font-semibold text-blue-900">
+          Best Outfits for Students
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Affordable and trendy outfits for students. From casual t-shirts to smart jackets, here’s what’s trending this season.
+        </p>
+      </div>
+    </div>
+
+    <!-- Blog Card 3 -->
+    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
+      <img src="img/blog/b3.jpg" alt="Blog 3" class="w-full h-56 object-cover">
+      <div class="p-6 space-y-3">
+        <p class="text-sm text-gray-500 flex items-center gap-2">
+          <i class="fas fa-calendar-alt text-orange-400"></i> Jan 12, 2025
+        </p>
+        <h3 class="text-xl font-semibold text-blue-900">
+          Streetwear Trends 2025
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Discover the latest streetwear fashion. From oversized hoodies to stylish sneakers, streetwear is taking over 2025.
+        </p>
+      </div>
+    </div>
+
+    <!-- Blog Card 4 -->
+    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
+      <img src="img/blog/b4.jpg" alt="Blog 4" class="w-full h-56 object-cover">
+      <div class="p-6 space-y-3">
+        <p class="text-sm text-gray-500 flex items-center gap-2">
+          <i class="fas fa-calendar-alt text-orange-400"></i> Dec 20, 2024
+        </p>
+        <h3 class="text-xl font-semibold text-blue-900">
+          Summer Dresses Collection
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Light and colorful dresses to make your summer vibrant. Breathable fabrics and elegant designs for all occasions.
+        </p>
+      </div>
+    </div>
+
+    <!-- Blog Card 5 -->
+    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
+      <img src="img/blog/b7.jpg" alt="Blog 5" class="w-full h-56 object-cover">
+      <div class="p-6 space-y-3">
+        <p class="text-sm text-gray-500 flex items-center gap-2">
+          <i class="fas fa-calendar-alt text-orange-400"></i> Nov 05, 2024
+        </p>
+        <h3 class="text-xl font-semibold text-blue-900">
+          Accessories You Need
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Complete your outfit with stylish accessories: watches, belts, and hats designed to elevate your fashion game.
+        </p>
+      </div>
+    </div>
+
+    <!-- Blog Card 6 - Food -->
+    <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
+      <img src="img/blog/b6.jpg" alt="Food Blog" class="w-full h-56 object-cover">
+      <div class="p-6 space-y-3">
+        <p class="text-sm text-gray-500 flex items-center gap-2">
+          <i class="fas fa-calendar-alt text-orange-400"></i> Oct 10, 2024
+        </p>
+        <h3 class="text-xl font-semibold text-blue-900">
+          Delicious Recipes to Try
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Not just fashion, we care about lifestyle too. Check out healthy recipes, quick snacks, and tasty dishes to enjoy with friends.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <div id="userSectionContainer"></div>
+
+ </main>
+
+
+ <!-- Modern Footer -->
+<footer class="bg-gray-800 text-gray-400">
+  <div class="max-w-7xl mx-auto px-5 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- About -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">About Us</h3>
+      <p class="text-gray-400 text-sm">
+        We provide top-notch services and aim for customer satisfaction. 
+        Your feedback helps us improve every day.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="#home" class="hover:text-orange-400 transition">Home</a></li>
+        <li><a href="#" class="hover:text-orange-400 transition">About</a></li>
+        <li><a href="#service" class="hover:text-orange-400 transition">Services</a></li>
+        <li><a href="#" class="hover:text-orange-400 transition">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">Follow Us</h3>
+        <div class="flex gap-4 text-2xl">
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+    </div>
+
+  </div>
+
+  <div class="border-t border-gray-800 mt-6 text-center py-4 text-sm text-gray-500">
+    &copy; 2025 fashonShoping. All rights reserved.
+  </div>
+</footer>
+
+
+  <script src="./main.js"></script>
+
+  <!-- JavaScript for Horizontal Scroll -->
+<script>
+  const container = document.getElementById('opinionsContainer');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const cardWidth = 326
+
+  let scrollPosition = 0;
+
+  nextBtn.addEventListener('click', () => {
+    // when click +326 but if reach to end no add more and assign diff bet
+    // continer content width - appear content width
+    scrollPosition += cardWidth;
+    if(scrollPosition > container.scrollWidth - container.clientWidth){
+      scrollPosition = container.scrollWidth - container.clientWidth;
+    
+    }
+    //   console.log(container.scrollWidth ,container.clientWidth,scrollPosition)
+    container.style.transform = `translateX(-${scrollPosition}px)`;
+  });
+
+  prevBtn.addEventListener('click', () => {
+    scrollPosition -= cardWidth;
+    if(scrollPosition < 0) scrollPosition = 0;
+    // console.log(container.scrollWidth ,container.clientWidth,scrollPosition)
+    container.style.transform = `translateX(-${scrollPosition}px)`;
+  });
+</script>
+
+</body>
+</html>

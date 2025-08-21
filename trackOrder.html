@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Meta SEO -->
+  <meta name="description" content="Track your orders and view order history" />
+  <meta name="keywords" content="track order, order status, order history, shipping status" />
+  <meta name="author" content="Kiroloes Reda" />
+  <link rel="icon" href="./img/f1.ico">
+  <title>Track Your Order - Fashion Shopping</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <style>
+    @media (max-width: 766px) {
+      #side-summer {
+        height: 30vh !important;
+      }
+    }
+    
+    /* Order Status Colors */
+    .status-pending {
+      background-color: #fef3c7;
+      color: #92400e;
+    }
+    
+    .status-shipped {
+      background-color: #dbeafe;
+      color: #1e40af;
+    }
+    
+    .status-delivered {
+      background-color: #dcfce7;
+      color: #166534;
+    }
+    
+    .status-cancelled {
+      background-color: #fee2e2;
+      color: #991b1b;
+    }
+    
+    /* Timeline Styles */
+    .timeline {
+      position: relative;
+      padding-left: 3rem;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background-color: #e5e7eb;
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.35rem;
+      top: 0.25rem;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background-color: #9ca3af;
+    }
+    
+    .timeline-item.active::before {
+      background-color: #3b82f6;
+      box-shadow: 0 0 0 4px #dbeafe;
+    }
+    
+    .timeline-item.completed::before {
+      background-color: #10b981;
+    }
+    
+
+  
+  </style>
+</head>
+
+<body class="bg-slate-50">
+    <!-- userSectionContainer -->
+<div id="userSectionContainer">
+
+  <!-- userSection -->
+  <div id="userSection" 
+       class="hidden fixed translate-x-1/2 md:top-32 md:right-28 lg:right-40 xl:right-52 2xl:right-80 
+              bg-white rounded-2xl shadow-xl drop-shadow-lg p-8 flex flex-col items-center gap-6 
+              w-[90%] sm:w-[400px] animate-fadeIn z-50">
+
+    <button id="closeUserSection" 
+            class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center 
+                   rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-black transition">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="flex flex-col items-center gap-3 ">
+      <img id="userImage" src="./img/people/1.png" alt="User image" class="w-20 h-20 rounded-full shadow-md">
+      <p id="userName" class="text-center text-2xl font-bold text-gray-800"></p>
+      <p id="noUser" class="hidden text-gray-500 text-sm">Welcome! Please login or sign up to continue</p>
+    </div>
+
+    <div class="flex flex-col gap-4 w-full">
+      <div class="flex flex-row gap-4 justify-center">
+        <a href="./login.html" class="flex-1 py-2 px-4 rounded-xl text-lg font-semibold bg-orange-400 text-white hover:bg-orange-500 transition">
+          Login
+        </a>
+        <a href="./signUp.html" class="flex-1 py-2 px-4 rounded-xl text-lg font-semibold bg-gray-900 text-white hover:bg-gray-700 transition">
+          Sign Up
+        </a>
+      </div>
+      
+      <a id="viewProfile" href="./viewProfile.html" 
+         class="w-full text-center py-2 px-4 rounded-xl text-lg font-semibold bg-gray-500 text-white hover:bg-gray-600 transition">
+        View Profile
+      </a>
+      <div id="logout" onclick="logout()" 
+           class="w-full text-center py-2 px-4 rounded-xl text-lg font-semibold bg-red-500 text-white hover:bg-red-600 transition">
+        Logout
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="userSectionContainer"></div>
+  <header class="py-8 bg-[var(--light)] border-b-2 border-[var(--dark)] rounded-b-sm sticky top-0 z-50 shadow-md ">
+    <div class="flex justify-around items-center">
+
+      <!-- Logo -->
+      <a href="./index.html" class="text-[var(--dark)] font-bold text-xl">
+        fashonShoping
+      </a>
+
+      <!-- Navigation for meduim device or more -->
+      <nav class="flex items-center">
+        <ul class="hidden md:flex [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
+          <li ><a  href="./index.html">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a class="text-[var(--orange)]" href="#">Track Order</a></li>
+          <li><a href="./wishlist.html">Wishlist</a></li>
+          <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+                          <li><a href="./products.html"><i class="cursor-pointer fa-solid fa-magnifying-glass"></i></a></li>
+          <li class=""><i class=" fa-solid fa-user cursor-pointer text-[var(--dark)]"></i></li>           
+          <li class="relative list-none">
+           <a href="./cart.html"><i class="fa-solid fa-cart-shopping cursor-pointer text-[var(--dark)] text-xl"></i></a>
+          <span id="cart-count" class="absolute -top-2 -right-1 xl:right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">0</span></li>
+        </ul>
+      </nav>
+
+      <!-- manual menu -->
+      <div id="menu-btn" class="menuBar md:hidden">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- nav bar for small device -->
+  <div id="mobile-menu" class="hidden md:hidden p-5 shadow-md z-30 fixed w-full top-20 bg-white">
+    <ul class="flex flex-col gap-3 [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
+      <li ><a href="./index.html">Home</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="#">Track Order</a></li>
+      <li><a href="./wishlist.html">Wishlist</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+      <div class="flex gap-3 px-2">
+        <li class=""><i class=" fa-solid fa-user cursor-pointer text-[var(--dark)]"></i></li>           
+        <li class="relative list-none">
+          <a href="./cart.html"><i class="fa-solid fa-cart-shopping cursor-pointer text-[var(--dark)] text-xl"></i></a>
+          <span id="cart-count" class="absolute -top-2 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">0</span>
+        </li>
+      </div>
+    </ul>
+  </div>
+
+  <div class="my-12"></div>
+
+  <!-- main  -->
+  <main id="home" class="mb-10">
+    <section id="Track-order-container" class="md:px-12 px-6 py-10 flex flex-col md:flex-row gap-8">
+      
+      <!-- Sidebar -->
+      <aside  class="border shadow-md w-full md:w-80 rounded-xl overflow-y-auto bg-white h-fit sticky top-32">
+  <div class="p-5 border-b">
+          <h2 class="text-xl font-bold text-gray-800 text-center">My Orders</h2>
+          <div class="mt-4 relative">
+            <input id="searchOrder" type="text" placeholder="Search orders..." class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+          </div>
+
+          <div id="sideOrder"></div>
+      </aside>
+
+      <!-- Main content -->
+      <main id="mainContent" class="border shadow-md w-full rounded-xl p-6 md:p-8 bg-white overflow-y-auto">
+        <!-- Order Header -->
+
+      </main>
+    </section>
+  </main>
+
+  <!-- Modern Footer -->
+  <footer class="bg-gray-800 text-gray-400">
+    <div class="max-w-7xl mx-auto px-5 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- About -->
+      <div>
+        <h3 class="text-white font-bold text-xl mb-3">About Us</h3>
+        <p class="text-gray-400 text-sm">
+          We provide top-notch services and aim for customer satisfaction. 
+          Your feedback helps us improve every day.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-white font-bold text-xl mb-3">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#home" class="hover:text-orange-400 transition">Home</a></li>
+          <li><a href="#" class="hover:text-orange-400 transition">About</a></li>
+          <li><a href="#service" class="hover:text-orange-400 transition">Services</a></li>
+          <li><a href="#" class="hover:text-orange-400 transition">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div>
+        <h3 class="text-white font-bold text-xl mb-3">Follow Us</h3>
+        <div class="flex gap-4 text-2xl">
+          <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 mt-6 text-center py-4 text-sm text-gray-500">
+      &copy; 2025 fashonShoping. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="./main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  
+  <script>
+    let orders2=currentUser.conifrmOrder||[];
+    function readOrderSummary(orders){
+        const sideOrder=document.getElementById("sideOrder");
+        document.getElementById("mainContent").innerHTML = `
+    <p class="text-center text-gray-700 text-lg mt-10 px-5 md:px-0">
+        Please select an <span class="font-semibold text-blue-600">order</span> to view its details.
+    </p>
+`;
+
+        sideOrder.innerHTML=""
+        orders.forEach(e=>{
+        sideOrder.innerHTML+=`      
+        </div>
+        <div class="p-4 space-y-3" id="orders-list">
+          <button onclick="readOrder(${e.orderId})" class="order-item w-full text-left bg-white border rounded-lg px-4 py-3 shadow transition hover:bg-blue-950 hover:text-white">
+            <div class="flex justify-between items-center">
+              <p class="font-semibold">#QFBKR${e.orderId}</p>
+              <span class="status-pending text-xs font-bold px-2 py-1 rounded-full">Pending</span>
+            </div>
+            <p class="text-sm  mt-1">Placed: ${e.createdAt}</p>
+            <p class="text-sm ">Total: $${e.totalPrice}</p>
+          </button>
+     
+        </div>`
+        })
+
+     
+    }
+
+    function readOrder(id){
+        let selectOrder= orders2.find(e=>{
+         return   e.orderId===id
+     } );
+       
+        document.getElementById("mainContent").innerHTML = `
+                <div class="flex flex-col md:flex-row justify-between md:items-center mb-8 pb-4 border-b">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-800">Order #QFBK3R${selectOrder.orderId}</h2>
+            <p class="text-gray-500">Placed on: <span class="font-medium">${selectOrder.createdAt}</span></p>
+          </div>
+          <div class="mt-3 md:mt-0 flex items-center gap-3">
+            <span class="status-pending px-4 py-2 rounded-md text-md font-extrabold">Pending</span>
+            <button onclick="remove(${selectOrder.orderId})" class=" bg-red-100 text-red-800 px-3 py-2 rounded-md text-sm font-semibold hover:bg-red-200 transition">
+              <i class="fas fa-times-circle mr-1"></i> Cancel Order
+            </button>
+          </div>
+        </div>
+
+        <!-- Order Tracking Timeline -->
+        <div class="mb-8 bg-gray-50 p-5 rounded-lg">
+          <h3 class="text-lg font-semibold mb-4">Order Status</h3>
+          <div class="timeline">
+            <div class="timeline-item completed">
+              <h4 class="font-medium text-gray-800">Order Placed</h4>
+              <p class="text-sm text-gray-500">${selectOrder.createdAt}</p>
+            </div>
+            <div class="timeline-item completed">
+              <h4 class="font-medium text-gray-800">Order Confirmed</h4>
+              <p class="text-sm text-gray-500">${selectOrder.createdAt}</p>
+            </div>
+            <div class="timeline-item active">
+              <h4 class="font-medium text-gray-800">Processing</h4>
+              <p class="text-sm text-gray-500">Expected: ${parseInt((selectOrder.createdAt).split("/")[0])+1}/${((selectOrder.createdAt).split("/")[1])}/${((selectOrder.createdAt).split("/")[2])}</p>
+            </div>
+            <div class="timeline-item">
+              <h4 class="font-medium text-gray-500">Shipped</h4>
+              <p class="text-sm text-gray-400">Not yet shipped</p>
+            </div>
+            <div class="timeline-item">
+              <h4 class="font-medium text-gray-500">Out for Delivery</h4>
+              <p class="text-sm text-gray-400">Not yet out for delivery</p>
+            </div>
+            <div class="timeline-item">
+              <h4 class="font-medium text-gray-500">Delivered</h4>
+              <p class="text-sm text-gray-400">Not yet delivered</p>
+            </div>
+          </div>
+        </div>
+<div id="orderDetails">
+        <!-- Order Info -->
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="p-5 border rounded-lg bg-gray-50">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-info-circle mr-2 text-blue-500"></i> Order Information
+            </h3>
+            <ul class="space-y-2 text-gray-700 text-sm">
+              <li class="flex justify-between"><strong>Payment Method:</strong> <span>${selectOrder.paymentMethod}</span></li>
+              <li class="flex justify-between"><strong>Shipping Cost:</strong> <span class="text-green-600">Free</span></li>
+              <li class="flex justify-between"><strong>Discount:</strong> <span>${selectOrder.discount}%</span></li>
+              <li class="flex justify-between"><strong>Order Note:</strong> <span>${selectOrder.orderNote}</span></li>
+            </ul>
+          </div>
+          <div class="p-5 border rounded-lg bg-gray-50">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-user mr-2 text-blue-500"></i> Customer Information
+            </h3>
+            <ul class="space-y-2 text-gray-700 text-sm">
+              <li class="flex justify-between"><strong>Name:</strong> <span>${selectOrder.username}</span></li>
+              <li class="flex justify-between"><strong>Phone:</strong> <span>${selectOrder.phone}</span></li>
+              <li class="flex justify-between"><strong>Email:</strong> <span>${currentUser.email}</span></li>
+              <li class="flex justify-between"><strong>Address:</strong> <span class="text-right">${selectOrder.address}/${selectOrder.region}/${selectOrder.governorate}</span></li>
+              <li class="flex justify-between"><strong>Age:</strong> <span>${selectOrder.age}</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-4 flex items-center">
+            <i class="fas fa-shopping-bag mr-2 text-blue-500"></i> Products
+          </h3>
+          <div id="productOrder" class="grid sm:grid-cols-1 lg:grid-cols-2 gap-5">
+   
+
+
+
+          </div>
+        </div>
+
+        <!-- Order Actions and Total -->
+        <div class="flex flex-row justify-between items-start md:items-center border-t pt-6 gap-4 py-1">
+     
+          <div class="flex flex-col">
+            <div class="text-sm text-gray-600 mb-1">Subtotal: <span class="font-medium">$${selectOrder.totalPrice-1}</span></div>
+            <div class="text-sm text-gray-600 mb-1">Shipping: <span class="font-medium text-green-600">$1</span></div>
+            </div>
+            <div class="text-xl font-bold text-gray-800">Total: <span class="text-green-600">$${selectOrder.totalPrice}</span></div>
+          
+        </div>
+        </div>
+        
+        <hr>
+             <div class="flex flex-wrap justify-around gap-2 mt-8">
+            <button onclick="help()" class="bg-blue-100 text-blue-800 px-4 py-2 rounded-md text-sm font-semibold hover:bg-blue-200 transition">
+              <i class="fas fa-question-circle mr-1"></i> Need Help
+            </button>
+            <button onclick="printOrder()" class="bg-gray-100 text-gray-800 px-4 py-2 rounded-md text-sm font-semibold hover:bg-gray-200 transition">
+              <i class="fas fa-print mr-1"></i> Print Invoice
+            </button>
+          
+          </div>
+        `
+
+
+           
+                        selectOrder.products.forEach(e=>{
+               document.getElementById("productOrder").innerHTML+= `
+                            <!-- Product Card -->
+            <div class="border rounded-lg p-4 bg-white hover:shadow-md transition flex gap-4 items-center">
+              <img src=${e.image || e.images[0]} class="w-20 h-20 object-cover rounded-lg border" alt="Pen">
+              <div class="flex-1">
+                <h4 class="font-semibold text-gray-800">${e.title}</h4>
+                <p class="text-sm text-gray-600">ID:#1KRW${e.id} </p>
+                <div class="flex justify-between items-center mt-2">
+                  <p class="text-sm text-gray-600">Qty: ${e.quantity} × $${e.price}</p>
+                  <p class="text-sm font-semibold text-green-700">$${e.price * e.quantity}</p>
+                </div>
+              </div>
+            </div>
+                `
+            })
+    }
+    
+
+
+    readOrderSummary(orders2)
+    
+
+    
+function searchOrder(){
+
+
+
+const id2 = "#QFBKR";
+console.log((id2.toLocaleLowerCase()).includes("q"))
+
+document.getElementById("searchOrder").addEventListener("input", e => {
+  const searchInputValue = e.target.value.toLowerCase().trim();
+
+  
+  let filterOrder = orders2.filter(order => {
+    return String(order.orderId).toLowerCase().includes(searchInputValue);
+  });
+
+  console.log("User typing:", searchInputValue);
+
+  if (id2.toUpperCase().includes(searchInputValue.toUpperCase()) || searchInputValue === "" ) {
+    
+    readOrderSummary(orders2);
+  } else  {
+    console.log("Filtered orders:", filterOrder);
+    readOrderSummary(filterOrder);
+  }
+});
+}
+searchOrder();
+   
+  
+             
+
+     
+
+     
+ function remove(id){
+      console.log(id)
+    
+      
+          Swal.fire({
+            title: 'Cancel Order?',
+            text: "Are you sure you want to cancel this order?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, cancel it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                orders2.forEach((e,i)=>{
+                      if(e.orderId===id){
+                           orders2.splice(i,1)
+                      }
+                })
+             
+                readOrderSummary(orders2)
+
+                localStorage.setItem("userArray",JSON.stringify(users))
+                console.log(orders2)
+              Swal.fire(
+                'Cancelled!',
+                'Your order has been cancelled.',
+                'success'
+              );
+              // In a real application, you would send a request to cancel the order
+            }
+          });
+        };
+      
+function help(){
+  Swal.fire({
+    title: 'How to Use Track Orders',
+    html: `
+      <div class="text-left">
+        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+          <li><strong>Order List:</strong> On the left, you'll see all your orders (Order #ID).</li>
+          <li><strong>View Details:</strong> Click on any order card to expand and see products, customer info, and totals.</li>
+          <li><strong>Status:</strong> Check the status label (Pending, Shipped, Delivered, or Cancelled).</li>
+          <li><strong>Payment:</strong> Payment method and shipping fees appear in the order header.</li>
+          <li><strong>Products:</strong> Scroll down inside an order to see images, quantities, and prices.</li>
+          <li><strong>Grand Total:</strong> At the bottom of the order card, you’ll find the full cost including shipping.</li>
+        </ul>
+      </div>
+    `,
+    icon: 'info',
+    confirmButtonText: 'Got it'
+  });
+}
+
+function printOrder() {
+  window.print()
+
+}
+
+
+
+
+
+
+  </script>
+</body>
+</html>

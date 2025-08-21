@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Meta SEO -->
+  <meta name="description" content="E-commerce website for medicines and products" />
+  <meta name="keywords" content="pharmacy, medicines, ecommerce, health" />
+  <meta name="author" content="Kiroloes Reda" />
+  <link rel="icon" href="./img/f1.ico">
+  <title>My E-Commerce App</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <style>
+
+  </style>
+</head>
+
+<body class="bg-slate-50">
+<!-- userSectionContainer -->
+<div id="userSectionContainer">
+
+  <!-- userSection -->
+  <div id="userSection" 
+       class="hidden fixed translate-x-1/2 md:top-32 md:right-28 lg:right-40 xl:right-52 2xl:right-80 
+              bg-white rounded-2xl shadow-xl drop-shadow-lg p-8 flex flex-col items-center gap-6 
+              w-[90%] sm:w-[400px] animate-fadeIn z-50">
+
+    <button id="closeUserSection" 
+            class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center 
+                   rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-black transition">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="flex flex-col items-center gap-3 ">
+      <img id="userImage" src="./img/people/1.png" alt="User image" class="w-20 h-20 rounded-full shadow-md">
+      <p id="userName" class="text-center text-2xl font-bold text-gray-800"></p>
+      <p id="noUser" class="hidden text-gray-500 text-sm">Welcome! Please login or sign up to continue</p>
+    </div>
+
+    <div class="flex flex-col gap-4 w-full">
+      <div class="flex flex-row gap-4 justify-center">
+        <a href="./login.html" class="flex-1 py-2 px-4 rounded-xl text-lg font-semibold bg-orange-400 text-white hover:bg-orange-500 transition">
+          Login
+        </a>
+        <a href="./signUp.html" class="flex-1 py-2 px-4 rounded-xl text-lg font-semibold bg-gray-900 text-white hover:bg-gray-700 transition">
+          Sign Up
+        </a>
+      </div>
+      
+      <a id="viewProfile" href="./viewProfile.html" 
+         class="w-full text-center py-2 px-4 rounded-xl text-lg font-semibold bg-gray-500 text-white hover:bg-gray-600 transition">
+        View Profile
+      </a>
+      <div id="logout" onclick="logout()" 
+           class="w-full text-center py-2 px-4 rounded-xl text-lg font-semibold bg-red-500 text-white hover:bg-red-600 transition">
+        Logout
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="py-8 bg-[var(--light)] border-b-2 border-[var(--dark)] rounded-b-sm sticky top-0 z-50 shadow-md ">
+  <div class="flex justify-around items-center">
+
+    <!-- Logo -->
+    <a href="#home"  class="text-[var(--dark)] font-bold text-xl">
+      fashonShoping
+    </a>
+
+    <!-- Navigation for meduim device or more -->
+    <nav class="flex items-center">
+      <ul class="hidden md:flex [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
+        <li ><a class="text-[var(--orange)]" href="#home">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./trackOrder.html">Track Order</a></li>
+        <li><a href="./wishlist.html">Wishlist</a></li>
+        <li><a href="./blog.html">Blog</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+                <li><a href="./products.html"><i class="cursor-pointer fa-solid fa-magnifying-glass"></i></a></li>
+        <li class=""><i class=" fa-solid fa-user cursor-pointer text-[var(--dark)]"></i></li>           
+        <li class="relative list-none">
+                        <a href="./cart.html"><i class="fa-solid fa-cart-shopping cursor-pointer text-[var(--dark)] text-xl"></i></a>
+            <span id="cart-count" class="absolute -top-2 -right-1 xl:right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">0</span></li>
+
+      </ul>
+    </nav>
+
+    <!-- manual menu -->
+ <div id="menu-btn" class="menuBar md:hidden">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+ </div>
+
+  </div>
+</header>
+
+<!-- nav bar for small device -->
+<div id="mobile-menu" class="hidden md:hidden p-5 shadow-md z-30 fixed w-full top-20 bg-white">
+        <ul class="  flex flex-col gap-3 [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
+        <li ><a class="text-[var(--orange)]" href="#home">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./trackOrder.html">Track Order</a></li>
+        <li><a href="./wishlist.html">Wishlist</a></li>
+        <li><a href="./blog.html">Blog</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+        <div class="flex gap-3 px-2">
+                <li><a href="./products.html"><i class="cursor-pointer fa-solid fa-magnifying-glass"></i></a></li>
+        <li class=""><i class=" fa-solid fa-user cursor-pointer text-[var(--dark)]"></i></li>           
+        <li class="relative list-none">
+            <a href="./cart.html"><i class="fa-solid fa-cart-shopping cursor-pointer text-[var(--dark)] text-xl"></i></a>
+            <span id="cart-count" class="absolute -top-2 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">0</span></li>
+       </div>
+      </ul>
+</div>
+
+
+
+<!-- main  -->
+ <main id="home" class="mb-44">
+
+    <!-- hero section -->
+    <section id="main-section-hero" style="height: 90vh;" id="main-section-hero"class="bg-[var(--bgheader)] flex items-center ">
+  
+        <!-- hero section text -->
+        <div class="px-10 xl:px-20 ">
+        <p class="font-bold text-gray-500">Trade-in-offer</p>
+        <h2 class="text-5xl font-bold mb-3 xl:text-8xl py-2 px-4">
+            Super value deals <br>
+            <span class="p-2 text-[var(--dark)] font-extrabold">On all products</span>
+        </h2>
+        <p class="font-semibold text-lg text-green-700 mb-5">Save more with coupons & up to <span class="text-red-700">70%</span> off!</p>
+        <a class="p-3 px-5 font-semibold text-lg " id="herobtn" href="./products.html">Shop Now</a>
+        </div>
+      
+    </section>
+
+
+    <!-- Features && offers section -->
+    <section id="Features" class="Features px-6 md:px-10 py-10 my-10">
+
+        <!-- Title -->
+         <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-10 text-center">
+            Our Features
+        </h3>
+
+    <!-- Features -->
+     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 px-2 md:px-16  xl:px-32">
+        <div class="p-6 bg-gray-100 rounded-lg shadow  transition flex flex-col items-center">
+        <img class=" object-contain" src="./img/features/f1.png" alt="Free Shipping">
+        <p class="mt-3 text-sm font-semibold text-[var(--dark)]">Free Shipping</p>
+        </div>
+
+        <div class="p-6 bg-gray-100 rounded-lg shadow  transition flex flex-col items-center">
+        <img class=" object-contain" src="./img/features/f2.png" alt="Online Order">
+        <p class="mt-3 text-sm font-semibold text-[var(--dark)]">Online Order</p>
+        </div>
+
+        <div class="p-6 bg-gray-100 rounded-lg shadow  transition flex flex-col items-center">
+        <img class=" object-contain" src="./img/features/f3.png" alt="Save Money">
+        <p class="mt-3 text-sm font-semibold text-[var(--dark)]">Save Money</p>
+        </div>
+
+        <div class="p-6 bg-gray-100 rounded-lg shadow  transition flex flex-col items-center">
+        <img class=" object-contain" src="./img/features/f4.png" alt="Promotions">
+        <p class="mt-3 text-sm font-semibold text-[var(--dark)]">Promotions</p>
+        </div>
+
+        <div class="p-6 bg-gray-100 rounded-lg shadow  transition flex flex-col items-center">
+        <img class=" object-contain" src="./img/features/f5.png" alt="Happy Sell">
+        <p class="mt-3 text-sm font-semibold text-[var(--dark)]">Happy Sell</p>
+        </div>
+
+        <div class="p-6 bg-gray-100 rounded-lg shadow  transition flex flex-col items-center">
+        <img class=" object-contain" src="./img/features/f6.png" alt="24/7 Support">
+        <p class="mt-3 text-sm font-semibold text-[var(--dark)]">24/7 Support</p>
+        </div>
+    </div>
+
+    <!-- Offers -->
+    <div class="flex flex-col md:flex-row gap-5 px-2 md:px-16  xl:px-32 my-14 ">
+        <!-- Offer one -->
+        <div class="flex-1 relative rounded-lg overflow-hidden shadow-md py-2">
+        <img src="./img/banner/b1.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Mega Offer">
+        <div class="relative bg-black/20 p-6 h-full flex flex-col justify-center items-start">
+            <h3 class="text-2xl font-bold text-white mb-2">Mega Offer</h3>
+            <p class="text-gray-200 mb-4">Get up to 50% off on selected items</p>
+            <a href="#" class="px-4 py-2 font-bold bg-white text-[var(--dark)] rounded-sm hover:bg-opacity-80 transition">
+            Shop Now
+            </a>
+        </div>
+        </div>
+
+        <!-- Offer two -->
+        <div class="flex-1 relative rounded-lg overflow-hidden shadow-md">
+        <img src="./img/banner/b2.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Special Deal">
+        <div class="relative bg-black/20 p-6 h-full flex flex-col justify-center items-start">
+            <h3 class="text-2xl font-bold text-white mb-2">Special Deal</h3>
+            <p class="text-gray-200 mb-4">Save more with our seasonal coupons</p>
+            <a href="#" class="px-4 py-2 bg-white font-bold  text-[var(--dark)]  rounded-sm hover:bg-opacity-80 transition">
+            Grab Deal
+            </a>
+        </div>
+        </div>
+    </div>
+
+    </section>
+<!-- <div class="w-52 mx-auto">
+      <div id="successPopup" 
+            class="z-10 absolute bg-green-100 border border-green-400 text-green-700 px-6 py-4  mx-auto rounded-xl shadow-lg flex items-center gap-3 opacity-1 scale-90 transition duration-300 ease-out hidden">
+        <i class="fas fa-check-circle text-green-600 text-2xl"></i>
+        <p class=" font-medium">Product added to cart successfully!</p>
+        </div>
+</div>
+<div class="w-52 mx-auto">
+  <div id="errorPopup" 
+        class="z-10 absolute bg-red-100 border border-red-400 text-red-700 px-6 py-4  mx-auto rounded-xl shadow-lg flex items-center gap-3 opacity-1 scale-90 transition duration-300 ease-out hidden">
+    <i class="fas fa-times-circle text-red-600 text-2xl"></i>
+    <p class=" font-medium">An error occurred, please try again!</p>
+  </div>
+</div> -->
+
+    <!--recommended products section  -->
+    <section id="recommended-products" class="recommended-products my-10 flex flex-col items-center px-10 " >
+        <!-- title -->
+         <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-10">Recommended Products</h3>
+
+<!-- card container -->
+<div id="card-recommended-container" class="px-5 gap-5 grid grid-cols-1
+md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+<!-- Success Popup -->
+
+
+
+    
+</div>
+
+<div class="my-10 flex justify-center items-center">
+  <a href="./products.html" class="flex items-center gap-3 text-lg text-[var(--dark)] font-semibold bg-white px-10 py-4 shadow-md shadow-slate-300 rounded-lg hover:bg-[var(--orange)] hover:text-white transition">
+    Shop Now
+    <i class="fa-solid fa-arrow-right pt-1"></i>
+  </a>
+</div>
+
+    </section>
+
+    <!-- offer -->
+    <section id="Offers" class="flex flex-col items-center justify-center text-center px-6 py-16 bg-cover bg-center relative">
+    
+    <!-- overlay عشان توضح الكلام فوق الخلفية -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <!-- المحتوى -->
+    <div class="relative z-10">
+        <!-- title -->
+        <h3 class="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md">
+        <span class="text-[var(--orange)]">Mega Sale</span> is Live!
+        </h3>
+
+        <!-- description -->
+        <p class="text-lg md:text-2xl text-white mt-4 max-w-2xl mx-auto leading-relaxed">
+        Get up to <span class="text-yellow-300 font-bold text-2xl">50%</span> OFF on your favorite products. Don’t miss out!
+        </p>
+
+        <!-- button -->
+        <div class="flex justify-center">
+        <button class="mt-6 flex items-center  gap-2 bg-white text-[var(--dark)] hover:bg-[var(--orange)] hover:text-white text-lg font-bold px-8 py-3 rounded-full shadow-md transition">
+        Get Discount
+        <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        </div>
+    </div>
+    </section>
+
+<!-- Policies Section -->
+<section id="Policies" class="bg-gray-50 py-20 px-6">
+  <div class="max-w-7xl mx-auto text-center">
+    
+    <!-- Section Title -->
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
+      Our Policies
+    </h2>
+
+    <!-- Policies Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Payment -->
+      <div class="flex flex-col items-center p-8 bg-white rounded-2xl shadow-md ">
+        <div class="bg-orange-100 p-4 rounded-full mb-5">
+          <i class="fa-solid fa-credit-card text-3xl text-orange-500"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3 text-gray-800">Secure Payment</h3>
+        <p class="text-gray-500 text-sm">
+          Multiple secure payment options including Credit/Debit cards, PayPal, and more.
+        </p>
+      </div>
+
+      <!-- Discounts -->
+      <div class="flex flex-col items-center p-8 bg-white rounded-2xl shadow-md ">
+        <div class="bg-green-100 p-4 rounded-full mb-5">
+          <i class="fa-solid fa-tags text-3xl text-green-500"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3 text-gray-800">Amazing Discounts</h3>
+        <p class="text-gray-500 text-sm">
+          Seasonal discounts, bundle offers, and exclusive deals on your favorite products.
+        </p>
+      </div>
+
+      <!-- Delivery -->
+      <div class="flex flex-col items-center p-8 bg-white rounded-2xl shadow-md ">
+        <div class="bg-blue-100 p-4 rounded-full mb-5">
+          <i class="fa-solid fa-truck text-3xl text-blue-500"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3 text-gray-800">Fast Delivery</h3>
+        <p class="text-gray-500 text-sm">
+          Get your orders delivered quickly with our reliable tracked shipping services.
+        </p>
+      </div>
+
+      <!-- Returns -->
+      <div class="flex flex-col items-center p-8 bg-white rounded-2xl shadow-md ">
+        <div class="bg-purple-100 p-4 rounded-full mb-5">
+          <i class="fa-solid fa-rotate-left text-3xl text-purple-500"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-3 text-gray-800">Easy Returns</h3>
+        <p class="text-gray-500 text-sm">
+          Hassle-free returns within 30 days. Your satisfaction is our priority.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Opinions Section -->
+<section id="Opinions" class="bg-gray-50 py-16 px-6">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
+      What Our Clients Say
+    </h2>
+
+    <div class="relative">
+
+      <!-- Carousel Wrapper -->
+      <div class="overflow-hidden">
+        <div id="opinionsContainer" class="flex ">
+          
+          <!-- Opinion Card 1 -->
+          <div class="flex-none w-80 rounded-xl shadow-mdrounded-xl shadow-md flex flex-col items-center p-6 m-3 ">
+            <img class="mb-4 w-28 rounded-full  shadow-md" src="./img/people/1.png" alt="user image">
+            <p class="text-gray-700 mb-4 italic text-center">
+              "Great service! The products arrived fast and the support team is amazing."
+            </p>
+            <h3 class="font-bold text-lg text-orange-500 mb-1">John Doe</h3>
+            <span class="text-sm text-gray-500">CEO, Company</span>
+          </div>
+
+          <!-- Opinion Card 2 -->
+          <div class="flex-none w-80 rounded-xl shadow-mdrounded-xl shadow-md flex flex-col items-center p-6 m-3 ">
+            <img class="mb-4 w-28 rounded-full border-0 shadow-md" src="./img/people/2.png" alt="user image">
+            <p class="text-gray-700 mb-4 italic text-center">
+              "I love the discounts and the easy return policy. Highly recommend!"
+            </p>
+            <h3 class="font-bold text-lg text-orange-500 mb-1">Jane Smith</h3>
+            <span class="text-sm text-gray-500">Marketing Manager</span>
+          </div>
+
+          <!-- Opinion Card 3 -->
+          <div class="flex-none w-80 rounded-xl  shadow-md flex flex-col items-center p-6 m-3 ">
+            <img class="mb-4 w-28 rounded-full border-0 shadow-md" src="./img/people/3.png" alt="user image">
+            <p class="text-gray-700 mb-4 italic text-center">
+              "Secure payment options made me trust the store instantly."
+            </p>
+            <h3 class="font-bold text-lg text-orange-500 mb-1">Sara Hassan</h3>
+            <span class="text-sm text-gray-500">Entrepreneur</span>
+          </div>
+
+          <!-- Opinion Card 4 -->
+          <div class="flex-none w-80 rounded-xl  shadow-md flex flex-col items-center p-6 m-3 ">
+            <img class="mb-4 w-28 rounded-full border-0 shadow-md" src="./img/people/2.png" alt="user image">
+            <p class="text-gray-700 mb-4 italic text-center">
+              "Fast delivery and excellent packaging. Very satisfied."
+            </p>
+            <h3 class="font-bold text-lg text-orange-500 mb-1">Ali Ahmed</h3>
+            <span class="text-sm text-gray-500">Designer</span>
+          </div>
+
+        </div>
+      </div>
+
+<!-- Buttons -->
+<button id="prevBtn" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-orange-500 text-white p-3 rounded-full shadow-lg hover:bg-orange-600 transition">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+  </svg>
+</button>
+
+<button id="nextBtn" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-orange-500 text-white p-3 rounded-full shadow-lg hover:bg-orange-600 transition">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+  </svg>
+</button>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Form to Add Opinion Section -->
+<section id="add-opinion-section " class="my-10">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">
+        Add Your Opinion
+    </h2>
+
+    <div class="opinion-form flex flex-col items-center lg:flex-row flex-wrap lg:justify-around gap-8 p-8 bg-slate-800 rounded-t-sm">
+        
+        <!-- Text Section -->
+        <div class="text-white max-w-md">
+            <span class="text-sm text-gray-300 font-semibold">Share Your Thoughts</span>
+            <h3 class="text-3xl md:text-4xl font-extrabold mt-2">
+                We Value <span class="text-orange-300">Your Feedback</span>
+            </h3>
+            <p class="text-sm text-gray-300 font-medium mt-3 leading-relaxed">
+                Please fill out the form below to submit your opinion about our website and services.
+            </p>
+        </div>
+
+        <!-- Form Section -->
+        <form action="" class="flex flex-col gap-4 w-full max-w-md bg-gray-700 p-6 rounded-lg shadow-lg">
+            <div class="flex flex-col">
+                <label for="usernameOpinion" class="text-gray-200 mb-1">Your Name</label>
+                <input id="usernameOpinion" type="text" placeholder="Enter your name" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300">
+            </div>
+            <div class="flex flex-col">
+                <label for="featureWebsite" class="text-gray-200 mb-1">Favorite Feature</label>
+                <input id="featureWebsite" type="text" placeholder="What do you like most?" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300">
+            </div>
+            <div class="flex flex-col">
+                <label for="userOpinion" class="text-gray-200 mb-1">Your Opinion</label>
+                <textarea id="userOpinion" placeholder="Write your opinion here" rows="4" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"></textarea>
+            </div>
+            <button type="submit" class="mt-2 bg-orange-300 text-white font-bold py-2 px-4 rounded-md hover:bg-orange-400 transition">
+                Submit
+            </button>
+        </form>
+
+    </div>
+</section>
+
+<section id="service" class="py-10 px-8 lg:px-16">
+       <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-10">
+        Our Service 
+    </h2>
+
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+    <div class="relative h-64 rounded-lg overflow-hidden shadow-lg">
+      <img src="./img/banner/b17.jpg" alt="Crozy deals" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/25 flex flex-col justify-center items-start p-5 text-white">
+        <span class="text-sm uppercase font-semibold">Crozy deals</span>
+        <p class="text-2xl font-bold my-2">Buy 1 Get 1 Free</p>
+        <span class="px-2 text-sm">The best classic dress is on sale at Cara</span>
+      </div>
+    </div>
+
+    <div class="relative h-64 rounded-lg overflow-hidden shadow-lg">
+      <img src="./img/banner/b10.jpg" alt="Spring/Summer" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/25 flex flex-col justify-center items-start p-5 text-white">
+        <span class="text-sm uppercase font-semibold">Spring/Summer</span>
+        <p class="text-2xl font-bold my-2">Upcoming Season</p>
+        <span class="text-sm px-2">The best classic dress is on sale at Cara</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div class="relative h-48 rounded-lg overflow-hidden shadow-md">
+      <img src="./img/banner/b7.jpg" alt="Seasonal Sale" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/25 flex flex-col justify-center items-start p-4 text-white">
+        <p class="px-2 font-bold">Seasonal Sale</p>
+        <span class="text-sm">Winter Collection -50% Off-</span>
+      </div>
+    </div>
+
+    <div class="relative h-48 rounded-lg overflow-hidden shadow-md">
+      <img src="./img/banner/b19.jpg" alt="New Footwear Collection" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/25 flex flex-col justify-center items-start p-4 text-white">
+        <p class="font-bold px-2">New Footwear Collection</p>
+        <span class="text-sm">Spring/Summer 2022</span>
+      </div>
+    </div>
+
+    <div class="relative h-48 rounded-lg overflow-hidden shadow-md">
+      <img src="./img/banner/b18.jpg" alt="T-Shirts" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/25 flex flex-col justify-center items-start p-4 text-white">
+        <p class="font-bold px-2">T-Shirts</p>
+        <span class="text-sm">New Trendy Prints</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-5 my-5">
+    <div class="relative h-60  rounded-lg overflow-hidden shadow-md ">
+      <img src="./img/banner/b20.jpg" alt="T-Shirts" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/25 flex flex-col justify-center items-start p-4 text-white">
+        <p class="font-bold text-3xl">Support</p>
+        <span class="text-md px-2 ">we always support you</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <div id="userSectionContainer"></div>
+
+
+</style>
+
+ </main>
+
+
+ <!-- Modern Footer -->
+<footer class="bg-gray-800 text-gray-400">
+  <div class="max-w-7xl mx-auto px-5 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- About -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">About Us</h3>
+      <p class="text-gray-400 text-sm">
+        We provide top-notch services and aim for customer satisfaction. 
+        Your feedback helps us improve every day.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="#home" class="hover:text-orange-400 transition">Home</a></li>
+        <li><a href="#" class="hover:text-orange-400 transition">About</a></li>
+        <li><a href="#service" class="hover:text-orange-400 transition">Services</a></li>
+        <li><a href="#" class="hover:text-orange-400 transition">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">Follow Us</h3>
+        <div class="flex gap-4 text-2xl">
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+    </div>
+
+  </div>
+
+  <div class="border-t border-gray-800 mt-6 text-center py-4 text-sm text-gray-500">
+    &copy; 2025 fashonShoping. All rights reserved.
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+  <script src="./main.js"></script>
+
+  <!-- JavaScript for Horizontal Scroll -->
+<script>
+  const container = document.getElementById('opinionsContainer');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const cardWidth = 326
+
+  let scrollPosition = 0;
+
+  nextBtn.addEventListener('click', () => {
+    // when click +326 but if reach to end no add more and assign diff bet
+    // continer content width - appear content width
+    scrollPosition += cardWidth;
+    if(scrollPosition > container.scrollWidth - container.clientWidth){
+      // rest space
+      scrollPosition = container.scrollWidth - container.clientWidth;
+    
+    }
+    //   console.log(container.scrollWidth ,container.clientWidth,scrollPosition)
+    container.style.transform = `translateX(-${scrollPosition}px)`;
+  });
+
+  prevBtn.addEventListener('click', () => {
+    scrollPosition -= cardWidth;
+    if(scrollPosition < 0) scrollPosition = 0;
+    // console.log(container.scrollWidth ,container.clientWidth,scrollPosition)
+    container.style.transform = `translateX(-${scrollPosition}px)`;
+  });
+</script>
+<script>
+    // recommended
+    let recommendedContainer=document.getElementById("card-recommended-container");
+    let recommendArray=JSON.parse(localStorage.getItem("products"));
+    recommendArray=recommendArray.splice(Math.floor(Math.random() * (recommendArray.length - 4)),4);
+
+// recommendedContainer.innerHTML = "";
+//    recommendArray.forEach((e,i,arr) => {
+//         recommendedContainer.innerHTML += `
+//         <div id="cardProduct" class="card flex flex-col items-center">
+//             <a onclick='displayProduct(${JSON.stringify(e)})' href="./productDisplay.html" class="w-full">
+//                 <img class="w-full h-64 md:h-64 lg:h-64 rounded-t-lg object-cover" src="${e.image||e.images[0]}" alt="${e.name}">
+//             </a>
+//             <div class="py-3 w-full h-full max-w-xl bg-white shadow-md mt-[-2.5rem] rounded-md mx-2">
+//                 <div class="px-3">
+//                     <p class="text-lg font-semibold">${e.title}</p>
+//                     <p class="h-12 px-2 text-md font-medium overflow-hidden py-1 my-2 mb-4 text-gray-500">
+//                         ${e.description}
+//                     </p>
+//                 </div>
+//                 <div class="flex justify-between items-center">
+//                     <p class="bg-orange-300 p-2 text-white text-center text-lg font-bold rounded-r-full w-28">${e.price}$</p>
+//                     <div class="flex gap-5 pr-3">
+//                   <button onclick="addToWishlist(${e.id})" id="fav" class="text-gray-500 hover:text-red-500 text-3xl transition">
+//                             <i class="fa-regular fa-heart"></i>
+//                         </button>
+//                         <div onclick="addToCart(${e.id})" class="text-gray-500 hover:text-[var(--orange)] text-2xl transition">
+//                             <i class="fa-solid fa-cart-shopping"></i>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//         `;
+//     });
+    readProducts(recommendArray,document.getElementById("card-recommended-container"))
+</script>
+
+<script>
+
+
+</script>
+
+</body>
+</html>
