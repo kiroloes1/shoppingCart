@@ -99,47 +99,10 @@
     <!-- userSectionContainer -->
 <div id="userSectionContainer">
 
-  <!-- userSection -->
-  <div id="userSection" 
-       class="hidden fixed translate-x-1/2 md:top-32 md:right-28 lg:right-40 xl:right-52 2xl:right-80 
-              bg-white rounded-2xl shadow-xl drop-shadow-lg p-8 flex flex-col items-center gap-6 
-              w-[90%] sm:w-[400px] animate-fadeIn z-50">
 
-    <button id="closeUserSection" 
-            class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center 
-                   rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-black transition">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-
-    <div class="flex flex-col items-center gap-3 ">
-      <img id="userImage" src="./img/people/1.png" alt="User image" class="w-20 h-20 rounded-full shadow-md">
-      <p id="userName" class="text-center text-2xl font-bold text-gray-800"></p>
-      <p id="noUser" class="hidden text-gray-500 text-sm">Welcome! Please login or sign up to continue</p>
-    </div>
-
-    <div class="flex flex-col gap-4 w-full">
-      <div class="flex flex-row gap-4 justify-center">
-        <a href="./login.html" class="flex-1 py-2 px-4 rounded-xl text-lg font-semibold bg-orange-400 text-white hover:bg-orange-500 transition">
-          Login
-        </a>
-        <a href="./signUp.html" class="flex-1 py-2 px-4 rounded-xl text-lg font-semibold bg-gray-900 text-white hover:bg-gray-700 transition">
-          Sign Up
-        </a>
-      </div>
-      
-      <a id="viewProfile" href="./viewProfile.html" 
-         class="w-full text-center py-2 px-4 rounded-xl text-lg font-semibold bg-gray-500 text-white hover:bg-gray-600 transition">
-        View Profile
-      </a>
-      <div id="logout" onclick="logout()" 
-           class="w-full text-center py-2 px-4 rounded-xl text-lg font-semibold bg-red-500 text-white hover:bg-red-600 transition">
-        Logout
-      </div>
-    </div>
-  </div>
 </div>
 
-  <div id="userSectionContainer"></div>
+  
   <header class="py-8 bg-[var(--light)] border-b-2 border-[var(--dark)] rounded-b-sm sticky top-0 z-50 shadow-md ">
     <div class="flex justify-around items-center">
 
@@ -147,6 +110,7 @@
       <a href="./index.html" class="text-[var(--dark)] font-bold text-xl">
         fashonShoping
       </a>
+<div id="body"></div>
 
       <!-- Navigation for meduim device or more -->
       <nav class="flex items-center">
@@ -201,7 +165,7 @@
     <section id="Track-order-container" class="md:px-12 px-6 py-10 flex flex-col md:flex-row gap-8">
       
       <!-- Sidebar -->
-      <aside  class="border shadow-md w-full md:w-80 rounded-xl overflow-y-auto bg-white h-fit sticky top-32">
+      <aside  class="border shadow-md w-full md:w-80 rounded-xl overflow-y-auto bg-white h-fit md:sticky top-32">
   <div class="p-5 border-b">
           <h2 class="text-xl font-bold text-gray-800 text-center">My Orders</h2>
           <div class="mt-4 relative">
