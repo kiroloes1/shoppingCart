@@ -154,10 +154,16 @@
             <label class="block text-gray-500 text-sm mb-1">Age</label>
             <p id="userAge" class="bg-gray-50 p-3 rounded-lg">30 years</p>
           </div>
-          <div>
+          <div >
             <label class="block text-gray-500 text-sm mb-1">Password</label>
-            <p id="password" class="bg-gray-50 p-3 rounded-lg">••••••••••</p>
-            <button id="showPassword">show Password</button>
+            <div class="flex justify-between bg-gray-50 p-3 rounded-lg">
+            <p id="password" class=" ">••••••••••</p>
+           <button id="showPassword" 
+              class="ml-2 text-slate-600 hover:text-emerald-600 focus:outline-none">
+            <i id="eyeIcon" class="fa-solid fa-eye"></i>
+          </button>
+          </div>
+
           </div>
           <div>
             <label class="block text-gray-500 text-sm mb-1">Membership ID</label>
@@ -165,6 +171,22 @@
           </div>
         </div>
       </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <h2 class="text-xl font-bold mb-6 border-b pb-2">Extra Information</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+           <div>
+            <label class="block text-gray-500 text-sm mb-1">coupon Discount</label>
+            <p id="coupon" class="bg-gray-50 p-3 rounded-lg">Default</p>
+          </div>
+           <div>
+            <label class="block text-gray-500 text-sm mb-1">couponState</label>
+            <p id="couponState" class="bg-gray-50 p-3 rounded-lg">not Used</p>
+          </div>
+        </div>
+      </div>
+
 
       <!-- Shipping Address -->
       <div class="bg-white rounded-xl shadow-md p-6">
@@ -244,47 +266,64 @@
 
   <script src="./main.js"></script>
 
-  <script>
-    if(currentUser!==null){
+<script>
+  if (currentUser !== null) {
 
-   document.getElementById("username").innerHTML=currentUser.username;
-document.getElementById("userRole").innerHTML=currentUser.role;
-document.getElementById("joinDate").innerHTML=currentUser.joinedAt;
-if(currentUser.conifrmOrder===null){
-   currentUser.conifrmOrder=[]
-}
-else if(currentUser.productCart===null){
-   currentUser.productCart=[]
-}
-else if(currentUser.wishList===null){
-   currentUser.wishList=[]
-}
-document.getElementById("userInitial").innerHTML=currentUser.username[0]
-document.getElementById("ordersCount").innerHTML=currentUser.conifrmOrder.length;
-document.getElementById("cartCount").innerHTML=currentUser.productCart.length;
-document.getElementById("wishlistCount").innerHTML=currentUser.wishList.length;
-document.getElementById("userAge").innerHTML=currentUser.age;
-document.getElementById("userId").innerHTML=currentUser.id;
-document.getElementById("userStreet").innerHTML=currentUser.address.street;
-document.getElementById("userCity").innerHTML=currentUser.address.city;
-document.getElementById("userCountry").innerHTML=currentUser.address.country;
-document.getElementById("showPassword").addEventListener("click",e=>{
-  if(document.getElementById("showPassword").textContent==="show Password"){
-    document.getElementById("password").innerHTML=currentUser.password ;
-    document.getElementById("showPassword").innerHTML="hidden password"
-  }
-  else{
- document.getElementById("password").innerHTML="••••••••••"
-    document.getElementById("showPassword").innerHTML="show Password"
+  document.getElementById("username").innerHTML = currentUser.username;
+  document.getElementById("userRole").innerHTML = currentUser.role;
+  document.getElementById("joinDate").innerHTML = currentUser.joinedAt;
+
+  // check coupon exists
+  if (currentUser.coupon) {
+    document.getElementById("coupon").innerHTML = currentUser.coupon.couponDiscount;
+    document.getElementById("couponState").innerHTML = currentUser.coupon.used ? "not valid or Expired" : "valid";
+  } else {
+    document.getElementById("coupon").innerHTML = "No coupon";
+    document.getElementById("couponState").innerHTML = "-";
   }
 
+  // initialize arrays safely
+  if (!Array.isArray(currentUser.confirmOrder)) {
+    currentUser.confirmOrder = [];
+  }
+  if (!Array.isArray(currentUser.productCart)) {
+    currentUser.productCart = [];
+  }
+  if (!Array.isArray(currentUser.wishList)) {
+    currentUser.wishList = [];
+  }
 
+  document.getElementById("userInitial").innerHTML = currentUser.username[0];
+  document.getElementById("ordersCount").innerHTML = currentUser.confirmOrder.length;
+  document.getElementById("cartCount").innerHTML = currentUser.productCart.length;
+  document.getElementById("wishlistCount").innerHTML = currentUser.wishList.length;
+  document.getElementById("userAge").innerHTML = currentUser.age;
+  document.getElementById("userId").innerHTML = currentUser.id;
+  document.getElementById("userStreet").innerHTML = currentUser.address.street;
+  document.getElementById("userCity").innerHTML = currentUser.address.city;
+  document.getElementById("userCountry").innerHTML = currentUser.address.country;
 
-})
-  
+  // show / hide password
+  document.getElementById("showPassword").addEventListener("click", e => {
+    const passwordField = document.getElementById("password");
+    const toggleBtn = document.getElementById("showPassword");
 
+  if (passwordField.textContent === "••••••••••") {
+    // Show password
+    passwordField.textContent = currentUser.password;
+    eyeIcon.classList.remove("fa-eye-slash");
+    eyeIcon.classList.add("fa-eye");
+  } else {
+    // Hide password
+    passwordField.textContent = "••••••••••";
+    eyeIcon.classList.remove("fa-eye");
+    eyeIcon.classList.add("fa-eye-slash");
+  }
+  });
 
-    }
+}
+
+</script>
 
   </script>
 
