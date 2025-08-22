@@ -275,7 +275,7 @@
 
   // check coupon exists
   if (currentUser.coupon) {
-    document.getElementById("coupon").innerHTML = currentUser.coupon.couponDiscount;
+    document.getElementById("coupon").innerHTML = currentUser.coupon.couponDiscount? currentUser.coupon.couponDiscount:`<p>no coupon yet <a href="./getDiscount.html">click here to get coupon</a </p>`;
     document.getElementById("couponState").innerHTML = currentUser.coupon.used ? "not valid or Expired" : "valid";
   } else {
     document.getElementById("coupon").innerHTML = "No coupon";
