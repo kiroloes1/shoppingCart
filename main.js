@@ -58,6 +58,7 @@ let user = {
     role: "customer",
     address: { street: "", city: "", country: "" },
     joinedAt: new Date(),
+    coupon:{},
 
     // Methods
     updateUserInfo(username,email,age){
@@ -84,6 +85,8 @@ let user = {
         this.conifrmOrder.push({ ...order});
     }
 };
+
+
 // all products from api and local
 let products = [
   // المنتجات الأساسية (f1 إلى f7)
@@ -274,7 +277,7 @@ var currentUser = users.find(e => e.token === localStorage.getItem("token")) || 
 async function productsRead() {
   try {
     // API 1
-    let response1 = await fetch('https://dummyjson.com/products?limit=200');
+    let response1 = await fetch('https://dummyjson.com/products?limit=100');
     let data1 = await response1.json();
 
     // API 2
@@ -312,8 +315,10 @@ async function productsRead() {
     return [];
   }
 }
-
+if(! JSON.parse(localStorage.getItem("products"))){
 productsRead();
+}
+
 
 
 
@@ -332,7 +337,7 @@ function readProducts(arr, place) {
         place.innerHTML += `
         <div id="cardProduct" class="card flex flex-col items-center">
             <a onclick='displayProduct(${JSON.stringify(e)})' class="w-full">
-                <img class="w-72 md:w-full  h-64 md:h-64  rounded-t-lg object-contain" src="${e.image||e.images[0]}" alt="${e.name}">
+                <img loading="lazy" class="w-72 md:w-full  h-64 md:h-64  rounded-t-lg object-contain" src="${e.image||e.images[0]}" alt="${e.name}">
             </a>
             <div class="py-3 w-72 md:w-72  h-full max-w-sm bg-white shadow-md mt-[-2.5rem] rounded-md mx-2">
                 <div class="px-3">
@@ -483,7 +488,7 @@ function initUserSection() {
   });
 }
 
-// تشغيلها بعد تحميل الصفحة
+
 document.addEventListener("DOMContentLoaded", initUserSection);
 
 // filter by search input
@@ -779,3 +784,4 @@ function logout(){
 // localStorage.removeItem("userArray")
 
 console.log(currentUser)
+console.log(localStorage)

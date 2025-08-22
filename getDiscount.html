@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Meta SEO -->
+  <meta name="description" content="E-commerce website for medicines and products" />
+  <meta name="keywords" content="pharmacy, medicines, ecommerce, health" />
+  <meta name="author" content="Kiroloes Reda" />
+  <link rel="icon" href="./img/f1.ico">
+  <title>products page</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <style>
+
+  </style>
+</head>
+
+<body class="bg-slate-50">
+
+<header class="py-8 bg-[var(--light)] border-b-2 border-[var(--dark)] rounded-b-sm sticky top-0 z-50 shadow-md ">
+  <div class="flex justify-around items-center">
+
+    <!-- Logo -->
+    <a href="./index.html" class="text-[var(--dark)] font-bold text-xl">
+      fashonShoping
+    </a>
+
+    <!-- Navigation for meduim device or more -->
+    <nav class="flex items-center">
+      <ul class="hidden md:flex [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
+        <li ><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="./wishlist.html">Wishlist</a></li>
+        <li><a href="./blog.html">Blog</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./products.html"><i class="cursor-pointer fa-solid fa-magnifying-glass"></i></a></li>
+       
+        <li class=""><i class=" fa-solid fa-user cursor-pointer text-[var(--dark)]"></i></li>           
+        <li class="relative list-none">
+               <a class="text-[var(--orange)]" href="./cart.html"><i class="fa-solid fa-cart-shopping cursor-pointer text-[var(--dark)] text-xl"></i></a>
+            <span id="cart-count" class="absolute -top-2 -right-1 xl:right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">0</span></li>
+
+      </ul>
+    </nav>
+
+    <!-- manual menu -->
+ <div id="menu-btn" class="menuBar md:hidden">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+ </div>
+
+  </div>
+</header>
+
+
+
+<!-- nav bar for small device -->
+<div id="mobile-menu" class="hidden md:hidden p-5 shadow-md z-30 fixed w-full top-20 bg-white">
+        <ul class="  flex flex-col gap-3 [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
+        <li ><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="./wishlist.html">Wishlist</a></li>
+        <li><a href="./blog.html">Blog</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+        <div class="flex gap-3 px-2">
+                <li><a href="./products.html"><i class="cursor-pointer fa-solid fa-magnifying-glass"></i></a></li>
+        <li class=""><i class=" fa-solid fa-user cursor-pointer text-[var(--dark)]"></i></li> 
+      
+        <li class="relative list-none">
+                       <a class="text-[var(--orange)]" href="./cart.html"><i class="fa-solid fa-cart-shopping cursor-pointer text-[var(--dark)] text-xl"></i></a>
+            <span id="cart-count" class="absolute -top-2 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">0</span></li>
+       </div>
+      </ul>
+</div>
+  <div id="userSectionContainer"></div>
+<div class="my-12"></div>
+
+<!-- main  -->
+ <main  id="home" class="mb-44">
+<div class="px-5 mx-5 my-10 flex justify-between">
+<a onclick="goBack()"
+   class="inline-flex items-center gap-2 bg-blue-900 hover:bg-blue-950 text-white font-medium px-5 py-2 rounded-2xl shadow-md transition duration-300">
+  <i class="fas fa-arrow-left"></i> Back
+</a>
+<a href="./products.html" 
+   class="inline-flex items-center gap-2 bg-blue-900 hover:bg-blue-950 text-white font-medium px-5 py-2 rounded-2xl shadow-md transition duration-300">
+ products<i class="fa-solid fa-box"></i>
+
+</a>
+</div>
+
+
+<!-- If you don't have Tailwind, add this inside <head> -->
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+<section id="getDiscount" dir="ltr" class="py-10 bg-gradient-to-b from-slate-50 to-white">
+  <div class="mx-auto max-w-md px-4">
+    <div class="relative overflow-hidden rounded-2xl border border-slate-200 shadow-sm bg-white">
+      <!-- Badge -->
+      <div class="absolute -left-3 top-0 rotate-[-12deg]">
+        <span class="inline-block rounded-full bg-blue-800 px-6 py-1 text-xs font-semibold text-white shadow">
+          Exclusive Deal
+        </span>
+      </div>
+
+      <!-- Header -->
+      <div class="p-6 text-center">
+        <h2 class="text-2xl font-bold text-slate-900">Get 50% OFF</h2>
+        <p class="mt-1 text-md text-slate-500">Valid on your first order of $ 500 or more</p>
+      </div>
+
+      <!-- Perforated divider -->
+      <div class="relative">
+        <div class="absolute -left-3 -top-3 h-6 w-6 rounded-full bg-slate-50 border border-slate-200"></div>
+        <div class="absolute -right-3 -top-3 h-6 w-6 rounded-full bg-slate-50 border border-slate-200"></div>
+        <div class="border-top border-t border-dashed border-slate-300"></div>
+      </div>
+
+      <div class="p-6 ">
+        <label class="block text-md text-slate-500 mb-2">Use this code at checkout</label>
+
+        <div class="flex items-stretch flex-wrap justify-between gap-2">
+    
+        
+          <button id="generate" type="button" title="Copy "
+                class="rounded-md border order-3 border-slate-300 px-4 text-md font-semibold py-2 text-white bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-600/20">
+            Generate
+          </button>
+
+                <div id="displayCoupon" class="flex-1text-lg w-full flex-grow md:w-fit select-all rounded-md border-2 py-3 border-slate-300 bg-slate-50 px-8  font-mono text-lg tracking-widest text-slate-900 text-center">
+            LAP-50%-OFF
+          </div>
+
+
+             <button id="copy" type="button" title="Copy "
+                  class="rounded-md border border-slate-300 px-4 text-md font-semibold py-2 order-2 text-white bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-600/20">
+            Copy
+           </button>
+        </div>
+
+        <!-- Notes -->
+        <ul class="mt-4 space-y-1 text-sm text-slate-500">
+          <li>Valid until: September 30, 2025</li>
+          <li>Applies to non-discounted items only</li>
+          <li>One-time use per customer</li>
+        </ul>
+
+        <!-- Terms via details/summary (no JS) -->
+        <details class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4 open:bg-slate-50">
+          <summary class="cursor-pointer text-md font-semibold text-slate-700">Terms & Conditions</summary>
+          <div class="mt-2 text-sm leading-6 text-slate-600">
+            Discount applies to product subtotal only and excludes shipping or taxes. We reserve the right to cancel the coupon in case of misuse.
+          </div>
+        </details>
+      </div>
+
+      <!-- Footer CTA -->
+      <div class="border-t border-slate-200 bg-slate-50 p-6">
+        <a href="./products.html"
+           class="block w-full rounded-xl bg-blue-900 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-600/20">
+          Shop Now
+        </a>
+      </div>
+    </div>
+
+    <!-- Hint -->
+    <p class="mt-3 text-center text-xs text-slate-400">
+      Tip: Click the code to select it, then copy manually.
+    </p>
+  </div>
+</section>
+
+
+
+ </main>
+
+<div id="body"></div>
+
+ <!-- Modern Footer -->
+<footer class="bg-gray-800 text-gray-400">
+  <div class="max-w-7xl mx-auto px-5 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- About -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">About Us</h3>
+      <p class="text-gray-400 text-sm">
+        We provide top-notch services and aim for customer satisfaction. 
+        Your feedback helps us improve every day.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="#home" class="hover:text-orange-400 transition">Home</a></li>
+        <li><a href="#" class="hover:text-orange-400 transition">About</a></li>
+        <li><a href="#service" class="hover:text-orange-400 transition">Services</a></li>
+        <li><a href="#" class="hover:text-orange-400 transition">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-white font-bold text-xl mb-3">Follow Us</h3>
+        <div class="flex gap-4 text-2xl">
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+    </div>
+
+  </div>
+
+  <div class="border-t border-gray-800 mt-6 text-center py-4 text-sm text-gray-500">
+    &copy; 2025 fashonShoping. All rights reserved.
+  </div>
+</footer>
+
+
+  <script src="./main.js"></script>
+
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  const generateBtn = document.getElementById("generate");
+  const copyBtn = document.getElementById("copy");
+  const displayCoupon = document.getElementById("displayCoupon");
+  displayCoupon.innerHTML = ` LAP-50%-OFF`;
+
+  function generateCoupon() {
+    // Example: random 8-character coupon
+    return "DISC-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+  }
+
+  generateBtn.addEventListener("click", () => {
+      
+      if (!(localStorage.getItem("token"))) {
+        Swal.fire({
+          icon: "warning",
+          title: "Login Required",
+          text: "Please login or sign up first to get the discount."
+        }).then(e=>{
+            setTimeout(()=>{
+                location.href="./login.html"
+            },500)
+        });
+      } 
+      else if (currentUser) {
+
+        if (currentUser.confirmOrder.length > 0) {
+          Swal.fire({
+            icon: "error",
+            title: "Not Allowed",
+            text: "You cannot use this discount because this is not your first order."
+          });
+        } 
+        else if (currentUser.coupon !== "" && currentUser.coupon !== null &&currentUser.coupon !== undefined) {
+          Swal.fire({
+            icon: "error",
+            title: "Already Used",
+            text: "You are not allowed to use this coupon twice."
+          });
+        } 
+        else {
+     
+          let coupon = generateCoupon();
+             let couponObj={
+            couponDiscount: coupon.trim(),
+            used:false,
+        }
+          displayCoupon.innerHTML = coupon.trim();
+          let couponArray=JSON.parse(localStorage.getItem("discountCoupon"))||[];
+          couponArray.push(couponObj)
+          localStorage.setItem("discountCoupon", JSON.stringify(couponArray));
+          currentUser.coupon = couponObj;
+          localStorage.setItem("userArray", JSON.stringify(users));
+          
+          Swal.fire({
+            icon: "success",
+            title: "Congratulations!",
+            html: `Your coupon code is: <strong>${coupon}</strong>`,
+            confirmButtonText: "OK"
+          });
+        navigator.clipboard.writeText(displayCoupon.textContent.trim())
+        }
+      }
+    });
+
+
+    copyBtn.addEventListener("click",e=>{
+          if(displayCoupon.textContent.trim()=="LAP-50%-OFF"){
+                 Swal.fire({
+            icon: "error",
+            title: "Already Used",
+            text: "not there any coupon to copy for you"
+          });
+          }
+        else {
+    // Copy to clipboard
+    navigator.clipboard.writeText(displayCoupon.textContent.trim()).then(() => {
+      Swal.fire({
+        icon: "success",
+        title: "Copied!",
+        html: `Coupon <strong>${displayCoupon.textContent}</strong> copied to clipboard.`,
+        timer: 2000,
+        showConfirmButton: false
+      });
+    }).catch(() => {
+      Swal.fire({
+        icon: "error",
+        title: "Copy Failed",
+        text: "Could not copy the coupon. Please try again."
+      });
+    });
+  }
+    })
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</body>
+</html>
+
