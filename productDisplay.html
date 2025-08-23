@@ -245,7 +245,7 @@
       </div>
       <!-- cart -->
    
-      <i  onclick="addToCart(${product.id})" class="fa-solid fa-cart-shopping cursor-pointer text-3xl text-gray-800 hover:text-orange-500"></i>
+      <i  onclick="addToCart(${product.id},${product.quantity})" class="fa-solid fa-cart-shopping cursor-pointer text-3xl text-gray-800 hover:text-orange-500"></i>
      
     </div>
 
@@ -268,10 +268,12 @@
         }
         function remove(){
 
-            if( product.quantity!==1)
-              product.quantity=product.quantity-1
+            if( product.quantity!==1){
+ product.quantity=product.quantity-1
               document.getElementById("displayQuentity").textContent= product.quantity;
               localStorage.setItem("displayProduct",JSON.stringify(product))
+            }
+             
         }
 
 

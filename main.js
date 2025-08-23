@@ -336,23 +336,29 @@ function readProducts(arr, place) {
       .forEach((e, i) => {
         place.innerHTML += `
         <div id="cardProduct" class="card flex flex-col items-center">
-            <a onclick='displayProduct(${JSON.stringify(e)})' class="w-full">
-                <img loading="lazy" class="w-72 md:w-full  h-64 md:h-64  rounded-t-lg object-contain" src="${e.image||e.images[0]}" alt="${e.name}">
-            </a>
-            <div class="py-3 w-72 md:w-72  h-full max-w-sm bg-white shadow-md mt-[-2.5rem] rounded-md mx-2">
-                <div class="px-3">
-                    <p class="text-lg font-semibold">${e.title}</p>
-                    <p class="h-12 px-2 text-md font-medium overflow-hidden py-1 my-2 mb-4 text-gray-500">
+            <div class="bg-white w-72 md:w-80 rounded-xl shadow-xsm overflow-hidden ">
+                <a onclick='displayProduct(${JSON.stringify(e)})'>
+                    <img 
+                        loading="lazy" 
+                        class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300 " 
+                        src="${e.image || e.images[0]}" 
+                        alt="${e.name}">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">${e.title}</h3>
+                    <p class="text-gray-500 text-sm h-16 overflow-hidden">
                         ${e.description}
                     </p>
                 </div>
-                <div class="flex justify-between items-center">
+                <div class="flex justify-between items-center pr-4 py-3 border-t">
                     <p class="bg-orange-300 p-2 text-white text-center text-lg font-bold rounded-r-full w-28">${e.price}$</p>
-                    <div class="flex gap-5 pr-3">
-                        <button onclick="addToWishlist(${e.id})" id="fav" class="text-gray-500 hover:text-red-500 text-3xl transition">
+                    <div class="flex gap-4">
+                        <button onclick="addToWishlist(${e.id})" id="fav" 
+                            class="text-gray-500 hover:text-red-500 text-2xl transition">
                             <i class="fa-regular fa-heart"></i>
                         </button>
-                        <button onclick="addToCart(${e.id})" class="text-gray-500 hover:text-[var(--orange)] text-2xl transition">
+                        <button onclick="addToCart(${e.id})" 
+                            class="text-gray-500 hover:text-[var(--orange)] text-2xl transition">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </button>
                     </div>
@@ -366,15 +372,16 @@ function readProducts(arr, place) {
     const cards = document.querySelectorAll(".card");
     cards.forEach((card, index) => {
         card.style.opacity = 0;
-        card.style.transform = "translateY(50px) rotate(5deg)";
-        card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+        card.style.transform = "translateY(40px)";
+        card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
 
         setTimeout(() => {
             card.style.opacity = 1;
-            card.style.transform = "translateY(0) rotate(0deg)";
-        }, index * 200); 
+            card.style.transform = "translateY(0)";
+        }, index * 150); 
     });
 }
+
 
 // read & reduce category 
 function readcategory(arr, place) {
@@ -539,6 +546,7 @@ function displayProduct(e){
 }
 
 function addToCart(productId, q = 1) {
+  console.log(q)
   let AddCartArray = [];
 
   if (localStorage.getItem("token") && currentUser) {
@@ -572,7 +580,6 @@ function addToCart(productId, q = 1) {
 
   cartcount();
 }
-
 
 function userSection(){
 document.getElementById("userSectionContainer").innerHTML=`

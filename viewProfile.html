@@ -39,9 +39,9 @@
     <nav class="flex items-center">
       <ul class="hidden md:flex [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
         <li ><a  href="./index.html">Home</a></li>
-        <li><a class="text-[var(--orange)]" href="#about">About</a></li>
-        <li><a href="#">Track Order</a></li>
-        <li><a href="#">Wishlist</a></li>
+        <li><a  href="./about.html">About</a></li>
+        <li><a href="./trackOrder.html">Track Order</a></li>
+        <li><a href="./wishlist.html">Wishlist</a></li>
         <li><a href="./blog.html">Blog</a></li>
         <li><a href="./contact.html">Contact</a></li>
                 <li><a href="./products.html"><i class="cursor-pointer fa-solid fa-magnifying-glass"></i></a></li>
@@ -69,9 +69,9 @@
 <div id="mobile-menu" class="hidden md:hidden p-5 shadow-md z-30 fixed w-full top-20 bg-white">
         <ul class="  flex flex-col gap-3 [&>li]:text-[var(--black)] [&>li]:font-semibold [&>li]:px-2 lg:[&>li]:px-3 xl:[&>li]:px-4">
         <li ><a href="./index.html">Home</a></li>
-        <li><a class="text-[var(--orange)]" href="#">About</a></li>
-        <li><a href="#">Track Order</a></li>
-        <li><a href="#">Wishlist</a></li>
+        <li><a  href="./about.html">About</a></li>
+        <li><a href="./trackOrder.html">Track Order</a></li>
+        <li><a href="./wishlist.html">Wishlist</a></li>
         <li><a href="./blog.html">Blog</a></li>
         <li><a href="./contact.html">Contact</a></li>
         <div class="flex gap-3 px-2">
@@ -98,14 +98,14 @@
 
 
  <main>
-<div class="container mx-auto px-4 py-8">
+<div class="container mx-auto px-2 md:px-4 py-8">
   <!-- Header -->
-  <header class="bg-gradient-to-r from-blue-950 to-blue-900  text-white rounded-xl shadow-lg p-6 mb-8">
+  <header class="bg-gradient-to-r from-blue-950 to-blue-900  text-white rounded-xl shadow-lg p-6  mb-8">
     <div class="flex justify-between items-center">
       <h1 class="text-2xl font-bold">Profile</h1>
       <div class="flex space-x-4">
-        <a href="./index.html" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition">Back to Home</a>
-        <a onclick="logout()" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition">Logout</a>
+        <a href="./index.html" class="bg-white/20 hover:bg-white/30 px-2 md:px-4  py-2 rounded-lg transition">Back to Home</a>
+        <a onclick="logout()" class="bg-white/20 hover:bg-white/30 px-2 md:px-4 py-2 rounded-lg transition">Logout</a>
       </div>
     </div>
   </header>
@@ -283,8 +283,8 @@
   }
 
   // initialize arrays safely
-  if (!Array.isArray(currentUser.confirmOrder)) {
-    currentUser.confirmOrder = [];
+  if (!Array.isArray(currentUser.conifrmOrder)) {
+    currentUser.conifrmOrder = [];
   }
   if (!Array.isArray(currentUser.productCart)) {
     currentUser.productCart = [];
@@ -294,7 +294,7 @@
   }
 
   document.getElementById("userInitial").innerHTML = currentUser.username[0];
-  document.getElementById("ordersCount").innerHTML = currentUser.confirmOrder.length;
+  document.getElementById("ordersCount").innerHTML = currentUser.conifrmOrder.length;
   document.getElementById("cartCount").innerHTML = currentUser.productCart.length;
   document.getElementById("wishlistCount").innerHTML = currentUser.wishList.length;
   document.getElementById("userAge").innerHTML = currentUser.age;
