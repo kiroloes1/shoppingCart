@@ -433,12 +433,25 @@
   }
 read()
 function edit() {
-  console.log(3);
+  document.getElementById("street").value=currentUser.address.street;
+  document.getElementById("city").value=currentUser.address.city ;
+  document.getElementById("country").value=currentUser.address.country;
+
 
   document.getElementById("address-modal").classList.remove("hidden");
 
   document.getElementById("submit").addEventListener("click", e => {
     e.preventDefault();
+    if(!document.getElementById("street").value.trim() || !document.getElementById("country").value.trim()||!document.getElementById("city").value.trim()){
+          Swal.fire({
+      icon: "error",
+      title: "ooops....",
+      text: "you must be fill all field"
+    })
+    }
+    else{
+
+    
 
     currentUser.address.street = document.getElementById("street").value.trim();
     currentUser.address.city = document.getElementById("city").value.trim();
@@ -455,6 +468,7 @@ function edit() {
 
       document.getElementById("address-modal").classList.add("hidden");
     });
+  }
   });
 
   document.getElementById("cancel").addEventListener("click", e => {
@@ -467,15 +481,19 @@ function editUser() {
   console.log(3);
 
   document.getElementById("user-modal").classList.remove("hidden");
-
+ document.getElementById("userNameEdit").value=currentUser.username;
   document.getElementById("userBtn").addEventListener("click", e => {
     e.preventDefault();
 
+    if(!document.getElementById("userNameEdit").value.trim()){
+                 Swal.fire({
+      icon: "error",
+      title: "ooops....",
+      text: "you must be fill all field"
+    })
+    }else{
     currentUser.username = document.getElementById("userNameEdit").value.trim();
-
-
     localStorage.setItem("userArray", JSON.stringify(users));
-
     Swal.fire({
       icon: "success",
       title: "Address Saved",
@@ -484,6 +502,8 @@ function editUser() {
       document.getElementById("user-modal").classList.add("hidden");
       read()
     });
+    }
+
   });
 
   document.getElementById("cancelLoginBtn2").addEventListener("click", e => {
@@ -497,7 +517,8 @@ function editInfo() {
 
   // Show modal
   document.getElementById("login-modal").classList.remove("hidden");
-
+ document.getElementById("email2").value=currentUser.email;
+ document.getElementById("password2").value=currentUser.password;
   // Save button
   document.getElementById("loginBtn").addEventListener("click", e => {
     e.preventDefault();
@@ -524,6 +545,14 @@ function editInfo() {
         title: "Weak Password",
         text: "Password must be at least 8 characters long!"
       });
+      return;
+    }
+    if(!document.getElementById("password2").value|| !document.getElementById("email2").value){
+      Swal.fire({
+      icon: "error",
+      title: "ooops....",
+      text: "you must be fill all field"
+    })
       return;
     }
 
