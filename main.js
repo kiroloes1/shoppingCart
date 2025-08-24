@@ -315,9 +315,9 @@ async function productsRead() {
     return [];
   }
 }
-if(! JSON.parse(localStorage.getItem("products"))){
+
 productsRead();
-}
+
 
 
 
@@ -325,6 +325,12 @@ productsRead();
 
 
 function readProducts(arr, place) {
+     
+
+
+
+
+
     place.innerHTML = "";
 
     // حاول تجيب قيمة maxPrice، لو مش موجود استخدم Infinity
@@ -335,7 +341,7 @@ function readProducts(arr, place) {
       .filter(e => e.price <= maxPrice)
       .forEach((e, i) => {
         place.innerHTML += `
-        <div id="cardProduct" class="card flex flex-col items-center">
+        <div id="cardProduct" class="h-full card flex flex-col items-center">
             <div class="bg-white w-72 md:w-80 rounded-xl shadow-xsm overflow-hidden ">
                 <a onclick='displayProduct(${JSON.stringify(e)})'>
                     <img 
@@ -344,7 +350,7 @@ function readProducts(arr, place) {
                         src="${e.image || e.images[0]}" 
                         alt="${e.name}">
                 </a>
-                <div class="p-4">
+                <div class="p-4 h-36 overflow-hidden">
                     <h3 class="text-xl font-bold text-gray-800 mb-2">${e.title}</h3>
                     <p class="text-gray-500 text-sm h-16 overflow-hidden">
                         ${e.description}
@@ -380,6 +386,10 @@ function readProducts(arr, place) {
             card.style.transform = "translateY(0)";
         }, index * 150); 
     });
+    
+document.getElementById("loading-spinner").classList.add("hidden");
+
+
 }
 
 
@@ -408,7 +418,7 @@ function readcategory(arr, place) {
   //container for lg screen or less
   let selectContainer = document.createElement("div");
   selectContainer.className = "block lg:hidden w-full";
-
+ 
   let select = document.createElement("select");
   select.className = "w-full px-4 py-2 rounded-md bg-gray-200 text-gray-700 font-semibold";
   select.innerHTML = `<option disabled selected>Choose Category</option>`;
@@ -419,6 +429,7 @@ function readcategory(arr, place) {
 
   // event when select changes
   select.addEventListener("change", (event) => {
+    
     categoryFilter(event.target.value);
   });
 
@@ -454,6 +465,7 @@ function categoryFilter(value) {
 
   
 
+document.getElementById("loading-spinner").classList.remove("hidden");
   
   readProducts(arrfilter, document.getElementById("product-card-container"));
   searcharray = arrfilter;
@@ -524,6 +536,8 @@ function searchInput(value, arr = searcharray) {
   
   console.log(filtered)
   // Display results
+document.getElementById("loading-spinner").classList.remove("hidden");
+
   readProducts(filtered, container);
 }
 // filter by price range
@@ -543,6 +557,7 @@ function priceFilter(value, arr = searcharray){
 function displayProduct(e){
    localStorage.setItem("displayProduct",JSON.stringify(e))
    location.href="./productDisplay.html"
+   console.log(2)
 }
 
 function addToCart(productId, q = 1) {
@@ -721,7 +736,7 @@ return
     cartcount()
 }
 
-function confirmProcess(){
+function confirmProcess(paymentMethod){
     let user=JSON.parse(localStorage.getItem("userArray"));
     let token=localStorage.getItem("token");
     if(!token){
@@ -751,6 +766,7 @@ function confirmProcess(){
     }
     
     else {
+      order.paymentMethod=paymentMethod
       document.getElementById("orderSection").classList.remove("hidden");
     }
     
@@ -792,3 +808,6 @@ function logout(){
 
 console.log(currentUser)
 console.log(localStorage)
+
+
+// localStorage.clear()

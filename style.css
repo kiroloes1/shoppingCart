@@ -159,7 +159,8 @@ thead {
 }
 
 tr:nth-child(even) {
-    background-color: #F5F7FA; /* رمادي فاتح */
+    background-color: #adafb35e !important; /* رمادي فاتح */
+    
 }
 
 tr:nth-child(odd) {

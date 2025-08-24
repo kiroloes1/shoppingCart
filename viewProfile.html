@@ -122,6 +122,26 @@
         <h2 id="username" class="text-xl font-bold mb-2">Username</h2>
         <p id="userRole" class="text-purple-600 font-medium mb-4">User Role</p>
         <p id="joinDate" class="text-gray-500 text-sm mb-6">Join Date</p>
+        <div class="flex justify-center mb-5">
+        <button onclick="editUser()" 
+        class="flex items-center gap-2 px-3 py-2 bg-blue-950 text-white rounded-lg hover:bg-blue-950">
+          <!-- Heroicon Pencil -->
+          <svg xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke-width="1.5" 
+              stroke="currentColor" 
+              class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" 
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 
+                    2.652l-1.688 1.687m-2.651-2.651L7.5 
+                    15.75v2.25h2.25L19.113 7.136m-2.251-2.649l2.251 
+                    2.25" />
+          </svg>
+          Edit
+        </button>
+        </div>
+
 
         <div class="flex justify-around border-t border-gray-100 pt-4">
           <div class="text-center">
@@ -170,6 +190,10 @@
             <p id="userId" class="bg-gray-50 p-3 rounded-lg">#12345</p>
           </div>
         </div>
+           <button  onclick="editInfo()" id="edit"
+              class="mt-4 bg-blue-950 hover:bg-blue-900 text-white px-4 py-2 rounded-lg transition">
+              Edit Info
+            </button>
       </div>
 
             <div class="bg-white rounded-xl shadow-md p-6 mb-6">
@@ -206,9 +230,9 @@
             <p id="userCountry" class="bg-gray-50 p-3 rounded-lg">Country Name</p>
           </div>
           <div class="md:col-span-2">
-            <button
+            <button  onclick="edit()" id="edit"
               class="mt-4 bg-blue-950 hover:bg-blue-900 text-white px-4 py-2 rounded-lg transition">
-              Edit Address
+              Save change
             </button>
           </div>
         </div>
@@ -218,55 +242,138 @@
 </div>
 
  </main>
+<div id="address-modal" class="fixed inset-0 bg-black/40 flex justify-center items-center hidden z-50">
+  <div class="bg-white rounded-2xl shadow-lg w-96 p-6">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Enter Your Address</h2>
+    
+    <form class="space-y-4">
+      <!-- Street -->
+      <div>
+        <label for="street" class="block text-sm font-medium text-gray-700 mb-1">Street</label>
+        <input type="text" id="street" name="street" 
+               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+      </div>
 
+      <!-- City -->
+      <div>
+        <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
+        <input type="text" id="city" name="city" 
+               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+      </div>
 
- <!-- Modern Footer -->
-<footer class="bg-gray-800 text-gray-400">
-  <div class="max-w-7xl mx-auto px-5 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Country -->
+      <div>
+        <label for="country" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+        <input type="text" id="country" name="country" 
+               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+      </div>
 
-    <!-- About -->
-    <div>
-      <h3 class="text-white font-bold text-xl mb-3">About Us</h3>
-      <p class="text-gray-400 text-sm">
-        We provide top-notch services and aim for customer satisfaction. 
-        Your feedback helps us improve every day.
-      </p>
-    </div>
-
-    <!-- Quick Links -->
-    <div>
-      <h3 class="text-white font-bold text-xl mb-3">Quick Links</h3>
-      <ul class="space-y-2">
-        <li><a href="#home" class="hover:text-orange-400 transition">Home</a></li>
-        <li><a href="#" class="hover:text-orange-400 transition">About</a></li>
-        <li><a href="#service" class="hover:text-orange-400 transition">Services</a></li>
-        <li><a href="#" class="hover:text-orange-400 transition">Contact</a></li>
-      </ul>
-    </div>
-
-    <!-- Social Media -->
-    <div>
-      <h3 class="text-white font-bold text-xl mb-3">Follow Us</h3>
-        <div class="flex gap-4 text-2xl">
-        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="hover:text-orange-400 transition"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-
-    </div>
-
+      <!-- Buttons -->
+      <div class="flex justify-between mt-6">
+        <button type="button" id="cancelBtn" 
+                class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400">
+          Cancel
+        </button>
+        <button id="submit" type="submit" 
+                class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">
+          Save change
+        </button>
+      </div>
+    </form>
   </div>
+</div>
 
-  <div class="border-t border-gray-800 mt-6 text-center py-4 text-sm text-gray-500">
-    &copy; 2025 fashonShoping. All rights reserved.
+<div id="login-modal" class="fixed inset-0 bg-black/40 flex justify-center items-center hidden z-50">
+  <div class="bg-white rounded-2xl shadow-lg w-96 p-6">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Login</h2>
+    
+    <form class="space-y-4">
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input type="email" id="email2" name="email" 
+               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+               placeholder="Enter your email">
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input type="password" id="password2" name="password" 
+               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+               placeholder="Enter your password">
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-between mt-6">
+        <button type="button" id="cancelLoginBtn" 
+                class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400">
+          Cancel
+        </button>
+        <button type="submit" id="loginBtn" 
+                class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">
+          Save change
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div id="user-modal" class="fixed inset-0 bg-black/40 flex justify-center items-center hidden z-50">
+  <div class="bg-white rounded-2xl shadow-lg w-96 p-6">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Edit</h2>
+    
+    <form class="space-y-4">
+      <!-- Email -->
+      <div>
+        <label for="userNameEdit" class="block text-sm font-medium text-gray-700 mb-1">User Name</label>
+        <input type="email" id="userNameEdit" name="email" 
+               class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+               placeholder="Enter your email">
+      </div>
+
+   
+      <!-- Buttons -->
+      <div class="flex justify-between mt-6">
+        <button type="button" id="cancelLoginBtn2" 
+                class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400">
+          Cancel
+        </button>
+        <button type="submit" id="userBtn" 
+                class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">
+            Save change
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Modern Footer -->
+<footer class="bg-gray-900 text-gray-400">
+  <div class="border-t border-gray-700 mt-6 py-12 text-center">
+<p class="text-2xl font-semibold text-white flex items-center justify-center gap-3">
+  <i class="fas fa-laptop-code text-orange-400"></i>
+  Eng. Kiroloes Reda
+  <i class="fas fa-microchip text-orange-400"></i>
+  <i class="fas fa-database text-orange-400"></i>
+</p>
+    <p class="text-lg mt-2">
+      <span class="text-orange-400">&copy; 2025</span> FashionShopping. All rights reserved.
+    </p>
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
   <script src="./main.js"></script>
 
 <script>
+  function read(){
+
+  
   if (currentUser !== null) {
 
   document.getElementById("username").innerHTML = currentUser.username;
@@ -294,6 +401,7 @@
   }
 
   document.getElementById("userInitial").innerHTML = currentUser.username[0];
+  document.getElementById("userEmail").innerHTML = currentUser.email;
   document.getElementById("ordersCount").innerHTML = currentUser.conifrmOrder.length;
   document.getElementById("cartCount").innerHTML = currentUser.productCart.length;
   document.getElementById("wishlistCount").innerHTML = currentUser.wishList.length;
@@ -321,6 +429,127 @@
   }
   });
 
+}
+  }
+read()
+function edit() {
+  console.log(3);
+
+  document.getElementById("address-modal").classList.remove("hidden");
+
+  document.getElementById("submit").addEventListener("click", e => {
+    e.preventDefault();
+
+    currentUser.address.street = document.getElementById("street").value.trim();
+    currentUser.address.city = document.getElementById("city").value.trim();
+    currentUser.address.country = document.getElementById("country").value.trim();
+
+    localStorage.setItem("userArray", JSON.stringify(users));
+
+    Swal.fire({
+      icon: "success",
+      title: "Address Saved",
+      text: "Your address has been updated successfully!"
+    }).then(() => {
+      read()
+
+      document.getElementById("address-modal").classList.add("hidden");
+    });
+  });
+
+  document.getElementById("cancel").addEventListener("click", e => {
+    e.preventDefault();
+    document.getElementById("address-modal").classList.add("hidden");
+  });
+}
+
+function editUser() {
+  console.log(3);
+
+  document.getElementById("user-modal").classList.remove("hidden");
+
+  document.getElementById("userBtn").addEventListener("click", e => {
+    e.preventDefault();
+
+    currentUser.username = document.getElementById("userNameEdit").value.trim();
+
+
+    localStorage.setItem("userArray", JSON.stringify(users));
+
+    Swal.fire({
+      icon: "success",
+      title: "Address Saved",
+      text: "Your Name has been updated successfully!"
+    }).then(() => {
+      document.getElementById("user-modal").classList.add("hidden");
+      read()
+    });
+  });
+
+  document.getElementById("cancelLoginBtn2").addEventListener("click", e => {
+    e.preventDefault();
+    document.getElementById("user-modal").classList.add("hidden");
+  });
+}
+
+function editInfo() {
+  console.log(3);
+
+  // Show modal
+  document.getElementById("login-modal").classList.remove("hidden");
+
+  // Save button
+  document.getElementById("loginBtn").addEventListener("click", e => {
+    e.preventDefault();
+
+    const email = document.getElementById("email2").value.trim();
+    const password = document.getElementById("password2").value.trim();
+
+    // Email Regex Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Email",
+        text: "Please enter a valid email address!"
+      });
+      return;
+    }
+
+    // Password Validation
+    if (password.length < 8) {
+      Swal.fire({
+        icon: "error",
+        title: "Weak Password",
+        text: "Password must be at least 8 characters long!"
+      });
+      return;
+    }
+
+    // Save user data
+    currentUser.email = email;
+    currentUser.password = password;
+    localStorage.setItem("userArray", JSON.stringify(users));
+
+    Swal.fire({
+      icon: "success",
+      title: "Info Updated",
+      text: "Your information has been saved successfully!"
+    }).then(() => {
+      // Hide modal بعد ما يقفل التنبيه
+      document.getElementById("login-modal").classList.add("hidden");
+      read();
+    });
+  });
+
+  // Cancel button
+  document.getElementById("cancelLoginBtn").addEventListener("click", e => {
+    e.preventDefault();
+    document.getElementById("login-modal").classList.add("hidden");
+  });
+
+  
 }
 
 </script>
