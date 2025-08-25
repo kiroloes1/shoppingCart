@@ -232,7 +232,7 @@
           <div class="md:col-span-2">
             <button  onclick="edit()" id="edit"
               class="mt-4 bg-blue-950 hover:bg-blue-900 text-white px-4 py-2 rounded-lg transition">
-              Save change
+              Edit Address
             </button>
           </div>
         </div>
@@ -471,9 +471,10 @@ function edit() {
   }
   });
 
-  document.getElementById("cancel").addEventListener("click", e => {
+  document.getElementById("cancelBtn").addEventListener("click", e => {
     e.preventDefault();
     document.getElementById("address-modal").classList.add("hidden");
+    return
   });
 }
 
