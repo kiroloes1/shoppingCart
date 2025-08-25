@@ -547,7 +547,7 @@ md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     // recommended
     let recommendedContainer=document.getElementById("card-recommended-container");
     let recommendArray=JSON.parse(localStorage.getItem("products"));
-    recommendArray=recommendArray.splice(Math.floor(Math.random() * (recommendArray.length - 4)),4);
+    recommendArray=recommendArray.splice(Math.floor(Math.random() * (recommendArray.length - 4)),8);
 
 // recommendedContainer.innerHTML = "";
 //    recommendArray.forEach((e,i,arr) => {
