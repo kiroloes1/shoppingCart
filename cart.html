@@ -17,7 +17,8 @@
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
-
+<!-- email.js -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./style.css" />
 
@@ -137,7 +138,7 @@
     <!-- coupon -->
     <div class="flex justify-between items-center text-sm sm:text-base text-gray-700">
       <p>Coupon</p>
-      <p class="text-orange-500 font-semibold">0% off</p>
+      <p id="discount" class="text-orange-500 font-semibold">0% off</p>
     </div>
     <hr class="border-gray-300">
 
@@ -374,12 +375,16 @@ function summery() {
         localStorage.setItem("discountCoupon", JSON.stringify(coupons));
       }
 
+
+
+      
       Swal.fire({
-        icon: "success",
+        icon: "info",
         title: "Congratulations!",
-        html: `You get the discount Now!`,
+        html: `you must be checkout now`,
         confirmButtonText: "OK"
       });
+      document.getElementById("discount").textContent="50% off"
 
     } else {
       // كوبون غير موجود أو منتهي → التوتال يفضل زي ما هو (مافيش تحديث)
@@ -508,6 +513,10 @@ if (currentUser.conifrmOrder.length === 0) {
 
   localStorage.setItem("userArray", JSON.stringify(users));
 
+    emailjs.init({
+  publicKey: "Px6gYhWjsfQZr6euH",
+});
+
   Swal.fire({
     icon: 'warning', 
     title: 'Confirm Order',
@@ -519,6 +528,52 @@ if (currentUser.conifrmOrder.length === 0) {
     cancelButtonColor: '#d33'
   }).then(result => {
     if(result.isConfirmed){
+
+   if (OrderArray.length > 0) {
+  
+
+
+  // دالة إرسال الإيميل
+ const latestOrder =OrderArray[OrderArray.length - 1]
+    console.log(latestOrder);
+
+
+    const templateParams = {
+      orderId: latestOrder.orderId,
+      username: latestOrder.username,
+      age: latestOrder.age,
+      phone: latestOrder.phone,
+      email: currentUser.email|| "Not Provided",
+      address: latestOrder.address,
+      region: latestOrder.region,
+      governorate: latestOrder.governorate,
+      paymentMethod: latestOrder.paymentMethod,
+      status: latestOrder.status,
+      discount: latestOrder.discount,
+      shippingCost: latestOrder.shippingCost,
+      totalPrice: latestOrder.totalPrice,
+      orderNote: latestOrder.orderNote,
+      createdAt: latestOrder.createdAt,
+      products: latestOrder.products.map(e=>e.title),
+      reply_to:"kiroloesreda@gmail.com"
+ // مهم: هيظهر كـ HTML في الرسالة
+    };
+    console.log(templateParams);
+
+
+    // استدعاء EmailJS
+    emailjs.send("service_q3sbrx6","template_owtnw3p", templateParams)
+      .then(function(response) {
+        console.log("SUCCESS!", response.status, response.text);
+        alert("Email sent successfully!");
+      }, function(error) {
+        console.error("FAILED...", error);
+        alert("Failed to send email. Check console for details.");
+      });
+  
+} else {
+  console.error("No orders found!");
+}
         setTimeout(()=>{
            
             document.getElementById("orderSection").classList.add("hidden");
@@ -548,6 +603,8 @@ if (currentUser.conifrmOrder.length === 0) {
 });
 
 </script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 </body>
 </html>
